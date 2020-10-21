@@ -1,0 +1,12 @@
+<!--
+ Copyright 2020 salesforce.com, inc
+ All rights reserved.
+ SPDX-License-Identifier: BSD-3-Clause
+ For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+-->
+
+<design:component label="Ideas Anywhere">
+    <design:attribute name="defaultSort" label="デフォルトソート順" description="デフォルトソート順" datasource="トレンド,最近,完了済み" default="トレンド" required = "true"/>
+    <design:attribute name="showIdeaLimit" label="アイデア表示件数" description="アイデア一覧に表示する件数" default="20" min = "1" max = "100" required = "true"/>
+    <design:attribute name="backgroundColor" label="背景色" description="背景色の指定" default="#FFFFFF" />
+</design:component>

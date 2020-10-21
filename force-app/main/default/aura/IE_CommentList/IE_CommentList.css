@@ -1,0 +1,74 @@
+/**
+ * Copyright 2020 salesforce.com, inc
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
+
+.THIS .ie-linkcolor {
+	color: #0070d2;
+}
+
+.THIS .ie-commnets .ie-main-item:last-child:before {
+	display: none;
+}
+
+.THIS .ie-comment-item {
+	position: relative;
+	padding-bottom: 1rem;
+	word-break: break-all;
+	overflow: hidden;
+}
+
+.THIS .ie-comment-item:last-child {
+	padding-bottom: 0;
+}
+
+.THIS .ie-main-item:before {
+	content: '';
+	background: #d8dde6;
+	height: 100%;
+	width: .15rem;
+	position: absolute;
+	top: 0;
+	margin-left: 1.4rem;
+	z-index: 0;
+}
+
+.THIS .ie-idea__pickup .ie-main-item:before {
+	display: none;
+}
+
+.THIS .ie-comment-item .slds-col {
+	position: relative;
+	z-index: 1;
+}
+
+.THIS .ie-comment-item .slds-col:last-child {
+	width: 100%;
+}
+
+.THIS .ie-avatar {
+	border: 2px solid #fff;
+	border-radius: 50%;
+	width: 3rem;
+	height: 3rem;
+	overflow: hidden;
+	display: inline-block;
+	vertical-align: middle;
+	line-height: 1;
+}
+
+.THIS .ie-idea__pickup {
+	background: rgb(243 243 243);
+	border: 1px solid var(--lwc-colorBorder);
+	margin-bottom: 1.5rem;
+	padding: 1rem;
+	border-radius: .25rem;
+}
+
+.THIS .ie-idea__pickup-title {
+	font-weight: normal;
+	font-size: 1.2rem;
+	margin-bottom: 1rem;
+}

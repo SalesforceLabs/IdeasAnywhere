@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>01カテゴリ1</fullName>
+        <default>false</default>
+        <label>カテゴリ1</label>
+    </customValue>
+    <customValue>
+        <fullName>02カテゴリ2</fullName>
+        <default>false</default>
+        <label>カテゴリ2</label>
+    </customValue>
+    <customValue>
+        <fullName>03カテゴリ3</fullName>
+        <default>false</default>
+        <label>カテゴリ3</label>
+    </customValue>
+    <customValue>
+        <fullName>04カテゴリ4</fullName>
+        <default>false</default>
+        <label>カテゴリ4</label>
+    </customValue>
+    <customValue>
+        <fullName>05カテゴリ5</fullName>
+        <default>false</default>
+        <label>カテゴリ5</label>
+    </customValue>
+    <customValue>
+        <fullName>06カテゴリ6</fullName>
+        <default>false</default>
+        <label>カテゴリ6</label>
+    </customValue>
+    <masterLabel>アイデア_カテゴリ</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

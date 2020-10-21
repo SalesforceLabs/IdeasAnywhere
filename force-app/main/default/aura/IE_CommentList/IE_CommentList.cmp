@@ -1,0 +1,83 @@
+<!--
+ Copyright 2020 salesforce.com, inc
+ All rights reserved.
+ SPDX-License-Identifier: BSD-3-Clause
+ For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+-->
+
+<aura:component controller="IE_IdeaMainController">
+    <!-- attribute -->
+    <aura:attribute name="commentNumber" type="String" description="コメント件数" default="" />
+    <aura:attribute name="recordId" type="String" description="レコードId" default="" />
+    <aura:attribute name="commentList" type="List" description="コメントリスト" default="{}" />
+    <aura:attribute name="pickupList" type="List" description="Pickupリスト" />
+    <aura:attribute name="selectedSort" type="String" description="検索対象ソート" />
+    <aura:attribute name="sortListCommentList" type="List" description="ソートリスト（コメントリスト）" />
+    <aura:attribute name="isCommentAdded" type="Boolean" description="コメント追加チェックフラグ" />
+
+    <!--ページ表示関連変数-->
+    <aura:attribute name="offsetBegin" type="Integer" description="表示ページの最初件数" />
+    <aura:attribute name="offsetEnd" type="Integer" description="表示ページの最後件数" />
+    <aura:attribute name="listTotalCount" type="Integer" description="アイデア総数" />
+    <aura:attribute name="showMoreButtonDisabled" type="Boolean" description="さらに表示ボタンを表示する" />
+    <!--コメント表示件数-->
+    <aura:attribute name="showCommentCount" type="Integer" description="表示するコメント件数" />
+    <aura:attribute name="isCommentExist" type="Boolean" description="コメントの存在チェック" />
+    <!-- handler-->
+    <aura:handler name="init" value="{!this}" action="{! c.doInit }" />
+    <aura:handler name="change" value="{!v.isCommentAdded}" action="{! c.doInit }" />
+    <!--再描画を行う-->
+
+    <!-- body -->
+    <aura:if isTrue="{!v.isCommentExist}">
+        <div class="slds-grid slds-wrap slds-m-bottom_small slds-align_absolute-center slds-border_bottom">
+            <div class="slds-col slds-p-top_small slds-m-bottom_small slds-max-small-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_1-of-2">
+                <ui:outputText value="{! $Label.c.IE_Idea_Comment + ' ( ' + v.commentNumber + ' )'}" /><br />
+            </div>
+            <div class="slds-col slds-m-bottom_small slds-max-small-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_1-of-2">
+                <lightning:combobox name="status" label="{! $Label.c.IE_Idea_Sort }" value="{!v.selectedSort}" placeholder="{! $Label.c.IE_Idea_SortSelect }" options="{!v.sortListCommentList}" onchange="{!c.changeSort}" />
+            </div>
+        </div>
+        <!-- IE_CommentCell -->
+        <div>
+            <aura:if isTrue="{! !empty(v.pickupList)}">
+                <div class="ie-idea__pickup">
+                    <h2 class="ie-idea__pickup-title">{! $Label.c.IE_Idea_PickupTitle }</h2>
+                    <ul class="ie-commnets">
+                        <aura:iteration items="{!v.pickupList}" var="pickupCell">
+                            <li class="ie-main-item ie-comment-item slds-grid">
+                                <div class="slds-col">
+                                    <lightning:avatar class="ie-avatar" variant="circle" src="{!pickupCell.SmallPhotoUrl}" initials="UN" fallbackIconName="standard:person_account" />
+                                </div>
+                                <div class="slds-col slds-p-left_small">
+                                    <ui:outputText value="{!pickupCell.Name +' - '+ pickupCell.CreatedDate}" /><br />
+                                    <ui:outputRichText value="{!pickupCell.CommentBody}" /><br />
+                                </div>
+                            </li>
+                        </aura:iteration>
+                    </ul>
+                </div>
+            </aura:if>
+            <ul class="ie-commnets">
+                <aura:iteration items="{!v.commentList}" var="commentCell">
+                    <li class="ie-main-item ie-comment-item slds-grid">
+                        <div class="slds-col">
+                            <lightning:avatar class="ie-avatar" variant="circle" src="{!commentCell.SmallPhotoUrl}" initials="UN" fallbackIconName="standard:person_account" />
+                        </div>
+                        <div class="slds-col slds-p-left_small">
+                            <ui:outputText value="{!commentCell.Name +' - '+ commentCell.CreatedDate}" /><br />
+                            <ui:outputRichText value="{!commentCell.CommentBody}" /><br />
+                        </div>
+                    </li>
+                </aura:iteration>
+            </ul>
+            <br />
+            <aura:if isTrue="{!v.showMoreButtonDisabled}">
+                <a href="javascript:void(0)" class="ie-linkcolor" onclick="{!c.showMoreComment}">
+                    {! $Label.c.IE_Idea_Showmore }
+                </a>
+            </aura:if>
+        </div>
+    </aura:if>
+    <!-- / IE_CommentCell -->
+</aura:component>

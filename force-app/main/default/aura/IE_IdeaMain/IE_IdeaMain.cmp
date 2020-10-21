@@ -1,0 +1,142 @@
+<!--
+ Copyright 2020 salesforce.com, inc
+ All rights reserved.
+ SPDX-License-Identifier: BSD-3-Clause
+ For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+-->
+
+<aura:component
+  controller="IE_IdeaMainController"
+  implements="lightning:isUrlAddressable,forceCommunity:availableForAllPageTypes,force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId"
+  access="global"
+>
+  <aura:attribute name="recordIdModal" type="String" description="モーダルのId" />
+  <aura:attribute name="recordIdDetail" type="String" description="DetailのId" />
+  <aura:attribute name="isLoginUser" type="Boolean" description="ログインユーザフラグ" />
+  <aura:attribute name="recordId" type="String" description="レコードId" default="" />
+
+  <aura:attribute name="pageName" type="String" description="一覧ページ名" />
+  <aura:attribute name="communityName" type="String" description="コミュニティ名" />
+  <aura:attribute name="categoryList" type="List" description="カテゴリリスト" />
+  <aura:attribute name="categoryListModal" type="List" description="モーダル上のカテゴリリスト" />
+  <aura:attribute name="statusList" type="List" description="状態リスト" />
+  <aura:attribute name="sortList" type="List" description="ソートリスト" />
+  <aura:attribute name="sortListCommentList" type="List" description="ソートリスト（コメントリスト）" />
+  <aura:attribute name="mainLabel" type="String" description="メインラベル" />
+
+  <!-- 各画面表示制御 -->
+  <aura:attribute name="isShowIdeaList" type="Boolean" description="アイデア一覧表示フラグ" default="false" />
+  <aura:attribute name="isShowIdeaDetail" type="Boolean" description="アイデア詳細表示フラグ" default="false" />
+  <aura:attribute name="isShowIdeaModal" type="Boolean" description="アイデア登録表示フラグ" default="false" />
+  <aura:attribute name="doneInit" type="Boolean" description="タブ切り替えなどイベント制御" default="false" />
+
+  <!-- アイデア一覧条件 -->
+  <aura:attribute
+    name="selectedCategory"
+    type="String"
+    description="検索対象カテゴリ"
+    default="{! $Label.c.IE_Condition_Initial_Value }"
+  />
+  <aura:attribute
+    name="selectedStatus"
+    type="String"
+    description="検索対象ステータス"
+    default="{! $Label.c.IE_Condition_Initial_Value }"
+  />
+  <aura:attribute name="offset" type="Integer" description="オフセット" default="0" />
+
+  <!-- モーダル変数-->
+  <aura:attribute name="ideaTitleModal" type="String" description="アイデアタイトル" />
+  <aura:attribute name="ideaBodyModal" type="String" description="アイデア内容" />
+  <aura:attribute name="categoryValue" type="List" description="選択されたカテゴリ" />
+
+  <!-- 編集ページから -->
+  <aura:attribute
+    name="defaultSort"
+    type="String"
+    description="デフォルトソート順"
+    default="{! $Label.c.IE_Sort_Value_Trend }"
+    access="global"
+  />
+  <aura:attribute name="showIdeaLimit" type="Integer" description="アイデア表示件数" default="20" access="global" />
+  <aura:attribute name="isShowNegativeVote" type="Boolean" description="ネガティブ表示有無" default="true" />
+  <aura:attribute name="positiveVotePoint" type="Integer" description="ポジティブ投票ポイントを指定" />
+  <aura:attribute name="negativeVotePoint" type="Integer" description="ネガティブ投票ポイントを指定" />
+  <aura:attribute name="backgroundColor" type="String" description="背景色の指定" access="global" />
+
+  <!-- handler -->
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+  <aura:handler event="aura:doneRendering" action="{!c.doneRendering}"/>
+  <aura:handler name="ideaDetailShowEvt" event="c:IE_IdeaDetailShowEvt" action="{!c.ideaDetailShow}" />
+  <aura:handler name="ideaListShowEvt" event="c:IE_IdeaListShowEvt" action="{!c.ideaListShow}" />
+  <aura:handler name="modalShowEvt" event="c:IE_ModalShowEvt" action="{!c.modalShow}" /><!--モーダルを呼ぶ-->
+  <aura:registerEvent name="ideaDetailShowEvt" type="c:IE_IdeaDetailShowEvt" />
+
+  <div class="slds-grid slds-box ie-idea--main" style="{!'background-color:' + v.backgroundColor}">
+    <div class="slds-col slds-size_1-of-1 slds-medium-size--1-of-1">
+      <div class="slds-m-bottom_medium">
+        <aura:if isTrue="{!v.isLoginUser}">
+          <lightning:button
+            variant="brand"
+            label="{! $Label.c.IE_Idea_Post }"
+            class="slds-float--right new-idea-button"
+            title="{! $Label.c.IE_Idea_Post }"
+            onclick="{! c.modalShow }"
+          />
+        </aura:if>
+        <ui:outputText class="slds-text-heading_medium" value="{!v.mainLabel}" />
+      </div>
+      <aura:if isTrue="{!v.isShowIdeaList}">
+        <!-- アイデア一覧 -->
+        <c:IE_IdeaList
+          aura:id="IdeaList"
+          isShowNegativeVote="{!v.isShowNegativeVote}"
+          selectedCategory="{!v.selectedCategory}"
+          selectedStatus="{!v.selectedStatus}"
+          offset="{!v.offset}"
+          categoryList="{!v.categoryList}"
+          statusList="{!v.statusList}"
+          sortList="{!v.sortList}"
+          selectedSort="{!v.defaultSort}"
+          showIdeaLimit="{!v.showIdeaLimit}"
+          positiveVotePoint="{!v.positiveVotePoint}"
+          negativeVotePoint="{!v.negativeVotePoint}"
+          isLoginUser="{!v.isLoginUser}"
+          isCommunity="{! v.communityName != $Label.c.IE_Community_internal_Value }"
+          pageName="{! v.pageName }"
+        />
+      </aura:if>
+
+      <aura:if isTrue="{!v.isShowIdeaDetail}">
+        <!-- アイデア詳細 -->
+        <c:IE_IdeaDetail
+          recordId="{!v.recordIdDetail}"
+          sortListCommentList="{!v.sortListCommentList}"
+          positiveVotePoint="{!v.positiveVotePoint}"
+          negativeVotePoint="{!v.negativeVotePoint}"
+          isShowNegativeVote="{!v.isShowNegativeVote}"
+          isLoginUser="{! v.isLoginUser }"
+          isCommunity="{! v.communityName != $Label.c.IE_Community_internal_Value }"
+          pageName="{! v.pageName }"
+        />
+      </aura:if>
+
+      <aura:if isTrue="{!v.isShowIdeaModal}">
+        <!-- アイデア投稿 -->
+        <!--　モーダル -->
+        <c:IE_IdeaRegistrationModal
+          positiveVotePoint="{!v.positiveVotePoint}"
+          ideaTitleModal="{!v.ideaTitleModal}"
+          ideaBodyModal="{!v.ideaBodyModal}"
+          categoryValue="{!v.categoryValue}"
+          categoryListModal="{!v.categoryListModal}"
+          recordIdModal="{!v.recordIdModal}"
+          recordIdDetail="{!v.recordIdDetail}"
+          isShowIdeaModal="{!v.isShowIdeaModal}"
+          isCommunity="{! v.communityName != $Label.c.IE_Community_internal_Value }"
+          pageName="{! v.pageName }"
+        />
+      </aura:if>
+    </div>
+  </div>
+</aura:component>

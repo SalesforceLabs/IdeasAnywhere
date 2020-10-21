@@ -1,0 +1,211 @@
+/**
+ * Copyright 2020 salesforce.com, inc
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
+
+.THIS {
+}
+
+.THIS .slds-button_neutral {
+	padding-top: 0.2rem;
+	padding-bottom: 0.2rem;
+	padding-left: 0.4rem;
+	padding-right: 0.4rem;
+}
+
+.THIS .ie-badge {
+	background: rgb(233, 234, 236);
+	width: 100%;
+	max-height: 40px;
+	text-align: center;
+	border-radius: 10px;
+	overflow: hidden;
+	align-items: baseline;
+	padding: 0 0.75rem;
+}
+
+.THIS .ie-text_size_mini {
+	font-size: 12px;
+}
+
+.THIS .ie-text_bold {
+	font-weight: bold;
+}
+
+.THIS .ie-inputtext {
+	border: 0px;
+	text-align: center;
+	background-color: white !important;
+	padding-top: 10px;
+	padding-left: 0px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+}
+
+.THIS .ie-hidetext {
+	height: 3.6rem;
+	overflow: hidden;
+}
+
+.THIS .ie-showmore {
+	margin-top: 0.75rem;
+}
+
+.THIS .ie-hidetext * {
+	font-size: 0.85rem !important;
+	line-height: 1.2rem !important;
+}
+
+.THIS .ie-word-break {
+	word-break: break-all;
+}
+
+.THIS .ie-linkcolor {
+	color: #0070d2;
+}
+
+.THIS .ie-ideas-cell__main {
+	margin-bottom: 0.75rem;
+}
+
+.THIS .ie-ideas-cell__profile {
+	text-align: center;
+}
+
+.THIS .ie-ideas-cell__profile .uiOutputText {
+	word-break: keep-all;
+}
+
+.THIS .ie-ideas-cell__vote .slds-grid {
+	align-items: center;
+}
+
+.THIS .ie-ideas-cell__vote .slds-grid .slds-col {
+	text-align: center;
+	padding: 0 0.75rem;
+}
+
+.THIS .ie-ideas-cell__vote .slds-grid .slds-col:first-child {
+	text-align: left;
+	padding: 0 0.75rem 0 0;
+}
+
+.THIS .ie-ideas-cell__vote .slds-grid .slds-col:last-child {
+	text-align: right;
+	padding: 0 0 0 0.75rem;
+}
+
+.THIS .ie-ideas-cell__vote .slds-grid .slds-col:only-child {
+	text-align: center;
+	padding: 0;
+}
+
+.THIS .ie-ideas-cell__content {
+	background: #fff;
+}
+
+.THIS .slds-badge {
+	padding: .05rem .5rem;
+	margin-right: .5rem;
+	font-size: .65rem;
+	color: #4a4a4a;
+}
+
+.THIS .slds-badge + .slds-badge {
+	margin-left: 0;
+}
+
+.THIS .ie-idea-button__like,
+.THIS .ie-idea-button__dislike {
+	color: var(--lwc-brandTextLink);
+	background-color: var(--lwc-colorBackgroundButtonDefault);
+	border-color: var(--lwc-colorBorder);
+}
+
+.THIS .ie-idea-button__like:hover,
+.THIS .ie-idea-button__like:active,
+.THIS .ie-idea-button__dislike:hover,
+.THIS .ie-idea-button__dislike:active {
+	color: var(--lwc-brandTextLinkActive);
+	background-color: var(--lwc-colorBackgroundButtonDefaultActive);
+}
+
+.THIS .ie-idea--body img {
+	display: none;
+}
+
+.THIS .ie-idea--body p:has(img) {
+	display: none;
+}
+
+.THIS .ie-idea--body p br:only-child {
+	display: none;
+}
+
+@media screen and (max-width: 767px) {
+	/*　画面サイズが768pxまではここを読み込む(small)　*/
+	.THIS .ie-border_right {
+		border-right: none;
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+	/*　画面サイズが768pxから1023pxまではここを読み込む(medium)　*/
+	.THIS .ie-border_right {
+		border-right: none;
+	}
+}
+
+@media screen and (min-width: 1024px) {
+	/*　画面サイズが1024pxからはここを読み込む　*/
+	.THIS .ie-border_right {
+		border-right: 1px solid lightgray;
+	}
+
+	.THIS .ie-padding_left {
+		padding-left: 17px;
+	}
+
+	.THIS .ie-padding_right {
+		padding-right: 1rem;
+	}
+
+	.THIS .ie-padding_right_0 {
+		padding-right: 0px;
+	}
+
+	.THIS .ie-ideas-cell__content {
+		flex-wrap: nowrap;
+	}
+
+	.THIS .ie-ideas-cell__profile {
+		width: 100px;
+	}
+
+	.THIS .ie-ideas-cell__vote {
+		width: fit-content;
+		padding: 0 1rem;
+	}
+
+	.THIS .ie-ideas-cell__main {
+		width: 100%;
+		flex: 1 1 auto;
+		margin-bottom: 0;
+	}
+
+	.THIS .ie-ideas-cell__edit {
+		width: 30%;
+		max-width: 300px;
+	}
+
+	.THIS .ie-ideas-cell__vote .slds-grid .slds-col {
+		padding: 0;
+	}
+}
+
+.THIS .ie-background-boxshadow {
+	background: white;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+}

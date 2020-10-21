@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GlobalValueSet xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customValue>
+        <fullName>01Open</fullName>
+        <default>false</default>
+        <label>Open</label>
+    </customValue>
+    <customValue>
+        <fullName>02Checking</fullName>
+        <default>false</default>
+        <label>Checking</label>
+    </customValue>
+    <customValue>
+        <fullName>03In Development</fullName>
+        <default>false</default>
+        <label>In Development</label>
+    </customValue>
+    <customValue>
+        <fullName>04During Verification</fullName>
+        <default>false</default>
+        <label>During Verification</label>
+    </customValue>
+    <customValue>
+        <fullName>05Under Test</fullName>
+        <default>false</default>
+        <label>Under Test</label>
+    </customValue>
+    <customValue>
+        <fullName>06Closed</fullName>
+        <default>false</default>
+        <label>Closed</label>
+    </customValue>
+    <masterLabel>アイデア_状況</masterLabel>
+    <sorted>false</sorted>
+</GlobalValueSet>

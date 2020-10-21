@@ -1,0 +1,189 @@
+<!--
+ Copyright 2020 salesforce.com, inc
+ All rights reserved.
+ SPDX-License-Identifier: BSD-3-Clause
+ For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+-->
+
+<aura:component controller="IE_IdeaMainController">
+  <!-- attribute -->
+  <aura:attribute name="recordId" type="String" description="SFIDを保持" />
+  <aura:attribute name="title" type="String" description="アイデアタイトル" />
+  <aura:attribute name="ideaBody" type="String" description="アイデア内容" />
+  <aura:attribute name="ideaBodyShow" type="String" description="画面上表示するアイデア内容" />
+  <aura:attribute name="ideaBodyLengthCheck" type="Boolean" description="bodyの長さをチェックするフラグ" />
+  <aura:attribute name="points" type="String" description="アイデアの合計ポイント" />
+  <aura:attribute name="postUserAvatarUrl" type="String" description="投稿者イメージURL" />
+  <aura:attribute name="userName" type="String" description="投稿者名" />
+  <aura:attribute name="isShowNegativeVote" type="Boolean" description="ネガティブ表示有無" />
+  <aura:attribute name="positiveVotePoint" type="Integer" description="ポジティブ投票ポイントを指定" />
+  <aura:attribute name="negativeVotePoint" type="Integer" description="ネガティブ投票ポイントを指定" />
+  <aura:attribute name="isPositive" type="Boolean" description="ボタン表示するため、どちへ投票したかを確認するフラグ" />
+  <aura:attribute name="isPost" type="Boolean" description="投稿済みフラグ" />
+  <aura:attribute name="categoryValue" type="List" description="選択されたカテゴリ" />
+  <aura:attribute name="categoryList" type="List" description="カテゴリラベル" />
+  <aura:attribute name="statusValue" type="String" description="アイデアの状況" />
+  <aura:attribute name="isLoginUser" type="Boolean" description="ログインユーザフラグ" />
+  <aura:attribute name="isCommunity" type="Boolean" description="コミュニティフラグ" />
+  <aura:attribute name="isClosed" type="Boolean" description="完了フラグ" />
+
+  <aura:attribute name="btnNameDelete" type="String" description="削除ボタン名" default="削除" />
+  <aura:attribute name="btnNameUpdate" type="String" description="編集ボタン名" default="編集" />
+
+  <!-- lightning service-->
+  <lightning:navigation aura:id="navService"/>
+
+  <!-- handler -->
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+  <!--Register the component level event-->
+  <aura:registerEvent name="ideaDetailShowEvt" type="c:IE_IdeaDetailShowEvt" />
+  <aura:registerEvent name="modalShowEvt" type="c:IE_ModalShowEvt" />
+  <aura:registerEvent name="ideaListShowEvt" type="c:IE_IdeaListShowEvt" />
+
+  <div id="{! 'ideas_list_' + v.recordId }">
+    <div class="slds-grid slds-wrap slds-box slds-m-bottom_medium ie-ideas-cell__content">
+      <!-- アイデア.タイトル/アイデア.内容　表示部　-->
+      <div
+        class="slds-x-small-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_1-of-1 ie-ideas-cell__main"
+      >
+        <div class="ie-border_right">
+          <h1 class="slds-text-heading_small ie-text_bold">
+            <aura:if isTrue="{!v.isPost}">
+              <a href="javascript:void(0)" onclick="{!c.callShowIdeaDetail}">
+                <div class="ie-word-break ie-padding_right">
+                  {!v.title}
+                </div>
+              </a>
+              <aura:set attribute="else">
+                <div class="ie-word-break ie-padding_right">
+                  <span class="slds-m-right_small">{!v.title}</span>
+                  <lightning:badge label="{! $Label.c.IE_Idea_Draft }" iconName="utility:edit_form" />
+                </div>
+              </aura:set>
+            </aura:if>
+          </h1>
+          <aura:if isTrue="{! !empty(v.categoryList) }">
+            <div class="slds-m-top_x-small ie-idea--categories">
+              <aura:iteration items="{!v.categoryList}" var="categoryLabel">
+                <span class="slds-badge">{! categoryLabel }</span>
+              </aura:iteration>
+            </div>
+          </aura:if>
+          <div class="ie-idea--body slds-m-top_x-small ie-hidetext ie-padding_right ie-word-break">
+            <ui:outputRichText value="{!v.ideaBodyShow}" />
+          </div>
+          <aura:if isTrue="{!v.isPost}">
+            <div class="ie-showmore">
+              <a href="javascript:void(0)" onclick="{!c.callShowIdeaDetail}">{! $Label.c.IE_Idea_Showmore }</a>
+            </div>
+          </aura:if>
+        </div>
+      </div>
+      <!-- アイデア.状況/アイデア.投票/投稿者情報　表示部　-->
+      <aura:if isTrue="{!v.isPost}">
+        <!-- アイデア.投票/アイデア.ポイントアイデア.状況　表示部　-->
+        <div
+          class="slds-x-small-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_3-of-12 slds-align_absolute-center ie-ideas-cell__vote"
+        >
+          <div class="slds-m-around_x-small">
+            <ul>
+              <li>
+                <div class="slds-grid">
+                  <aura:if isTrue="{! and(v.isLoginUser, !v.isClosed)}">
+                    <div class="slds-col">
+                      <aura:if isTrue="{! v.isPositive == true }">
+                        <lightning:button class="ie-idea-button__like" onclick="{!c.pressLikeDislikeButton}" value="delete">
+                          <lightning:icon iconName="utility:like" variant="success" size="small" />
+                        </lightning:button>
+                        <aura:set attribute="else">
+                          <lightning:button class="ie-idea-button__like" onclick="{!c.pressLikeDislikeButton}" value="true">
+                            <lightning:icon iconName="utility:like" size="small" />
+                          </lightning:button>
+                        </aura:set>
+                      </aura:if>
+                    </div>
+                  </aura:if>
+                  <div class="slds-col">
+                    <ul>
+                      <li class="slds-text-heading_small">
+                        <!--<ui:inputText disabled="true" value="{!v.points}" class="ie-inputtext ie-textColor"/>-->
+                        <ui:outputText value="{!v.points}" />
+                      </li>
+                      <li class="ie-text_size_mini ie-text_bold">
+                        <span>{! $Label.c.IE_Idea_Point }</span>
+                      </li>
+                    </ul>
+                  </div>
+                  <aura:if isTrue="{! and(v.isShowNegativeVote, !v.isClosed)}">
+                    <aura:if isTrue="{!v.isLoginUser}">
+                      <div class="slds-col">
+                        <aura:if isTrue="{! v.isPositive == false }">
+                          <lightning:button class="ie-idea-button__dislike" onclick="{!c.pressLikeDislikeButton}" value="delete">
+                            <lightning:icon iconName="utility:dislike" variant="error" size="small" />
+                          </lightning:button>
+                          <aura:set attribute="else">
+                            <lightning:button class="ie-idea-button__dislike" onclick="{!c.pressLikeDislikeButton}" value="false">
+                              <lightning:icon iconName="utility:dislike" size="small" />
+                            </lightning:button>
+                          </aura:set>
+                        </aura:if>
+                     </div>
+                    </aura:if>
+                  </aura:if>
+                </div>
+              </li>
+              <div class="slds-m-top_small slds-align_absolute-center ie-badge ie-word-break">
+                <ui:outputText value="{!v.statusValue}" />
+              </div>
+            </ul>
+          </div>
+        </div>
+        <!-- 投稿者情報　表示部　-->
+        <div
+          class="slds-x-small-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_2-of-12 slds-align_absolute-center ie-ideas-cell__profile"
+        >
+          <div class="slds-m-around_x-small">
+            <ul>
+              <li class="slds-align_absolute-center">
+                <lightning:avatar
+                  variant="circle"
+                  src="{!v.postUserAvatarUrl}"
+                  initials="UN"
+                  fallbackIconName="standard:person_account"
+                />
+              </li>
+              <li>
+                <div class="slds-align_absolute-center slds-m-top_x-small">
+                  <ui:outputText value="{!v.userName}" />
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <aura:set attribute="else">
+          <!-- ドラフト　削除ボタン/編集ボタン　表示 -->
+          <div
+            class="slds-x-small-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_1-of-2 slds-align_absolute-center ie-ideas-cell__edit"
+          >
+            <div class="slds-m-around_x-small">
+              <lightning:button
+                variant="brand"
+                label="{!v.btnNameUpdate}"
+                title="{!v.btnNameUpdate}"
+                onclick="{! c.openModel }"
+                class="slds-m-right_large"
+              />
+              <lightning:button
+                variant="brand-outline"
+                label="{!v.btnNameDelete}"
+                title="{!v.btnNameDelete}"
+                onclick="{! c.deleteIdea }"
+              />
+            </div>
+          </div>
+        </aura:set>
+      </aura:if>
+    </div>
+  </div>
+</aura:component>

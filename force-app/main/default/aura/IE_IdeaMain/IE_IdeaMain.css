@@ -1,0 +1,23 @@
+/**
+ * Copyright 2020 salesforce.com, inc
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
+
+.THIS .ie-idea--main {
+	box-shadow: var(--lwc-cardShadow, 0 2px 2px 0 rgba(0, 0, 0, 0.10));
+}
+
+.THIS .new-idea-button {
+	color: var(--lwc-colorTextBrandPrimary);
+	background-color: var(--lwc-brandAccessible);
+	border-color: var(--lwc-brandAccessible);
+}
+
+.THIS .new-idea-button:active,
+.THIS .new-idea-button:hover {
+	color: var(--lwc-colorTextBrandPrimary);
+	background-color: var(--lwc-brandAccessibleActive);
+	border-color: var(--lwc-brandAccessibleActive);
+}

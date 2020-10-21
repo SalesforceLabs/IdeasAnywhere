@@ -1,0 +1,102 @@
+<!--
+ Copyright 2020 salesforce.com, inc
+ All rights reserved.
+ SPDX-License-Identifier: BSD-3-Clause
+ For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+-->
+
+<aura:component controller="IE_IdeaMainController">
+
+    <!-- attribute -->
+    <aura:attribute name="recordIdModal" type="String" description="モーダルのId" />
+    <aura:attribute name="recordIdDetail" type="String" description="DetailのId" />
+
+    <aura:attribute name="ideaTitleModal" type="String" description="アイデアタイトルモーダル" default="" />
+    <aura:attribute name="ideaBodyModal" type="String" description="アイデア内容モーダル" default=""  />
+    <aura:attribute name="categoryListModal" type="List" description="モーダル上表示するカテゴリリスト" default="{}"/>
+    <aura:attribute name="positiveVotePoint" type="Integer" description="ポジティブ投票ポイントを指定" />
+    <aura:attribute name="isPost" type="Boolean" description="ドラフトかを判断するフラグ" default="" />
+    <aura:attribute name="isCommunity" type="Boolean" description="コミュニティかを判断するフラグ" default="" />
+    <aura:attribute name="categoryValue" type="List" description="選択されたカテゴリ" />
+    <aura:attribute name="btnNameCancel" type="String" description="キャンセルボタン名" default="キャンセル" />
+    <aura:attribute name="btnNameDraft" type="String" description="ドラフトボタン名" default="ドラフト保存" />
+    <aura:attribute name="btnNameRelease" type="String" description="公開ボタン名" default="公開" />
+    <aura:attribute name="isShowIdeaModal" type="Boolean" description="モーダル表示フラグ"/>
+    <aura:attribute name="pageName" type="String" description="一覧ページ名" />
+
+    <!-- lightning service-->
+    <lightning:navigation aura:id="navService" />
+    <aura:registerEvent name="ideaListShowEvt" type="c:IE_IdeaListShowEvt" />
+
+    <!-- Modal/Popup Box starts here-->
+    <section role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal ie-idea--modal slds-fade-in-open">
+        <div class="{! or(v.isCommunity, $Browser.formFactor == 'DESKTOP')? 'slds-modal__container' : 'slds-modal__container ie-idea--internal__mobile'}">
+            <!-- Modal/Popup Box Header Starts here-->
+                <header class="slds-modal__header">
+                    <lightning:buttonIcon iconName="utility:close"
+                                            onclick="{!c.closeModel}"
+                                            alternativeText="close"
+                                            variant="bare-inverse"
+                                            class="slds-modal__close"/>
+                    <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">{! $Label.c.IE_Idea_ModalHeader }</h2>
+                </header>
+
+            <!--Modal/Popup Box Body Starts here-->
+                <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                    <ui:scrollerWrapper class="ie-idea--scrollerWrapper">
+                        <div class="slds-m-bottom_x-small">
+                            <span class="slds-required">*</span><span>{! $Label.c.IE_Idea_ModalTitle }</span>
+                        </div>
+                        <lightning:input maxlength="255" class="slds-m-bottom_x-small" variant="label-hidden" value="{!v.ideaTitleModal}"/>
+
+                        <div class="row">
+                            <span class="slds-required">*</span><span>{! $Label.c.IE_Idea_Category }</span>
+                            <lightning:dualListbox class="slds-m-bottom_x-small"
+                                                name="category"
+                                                sourceLabel="{! $Label.c.IE_Idea_SelectionTarget }"
+                                                selectedLabel="{! $Label.c.IE_Idea_SelectedTarget }"
+                                                options="{!v.categoryListModal}"
+                                                onchange="{! c.handleChange }"
+                                                value="{! v.categoryValue }"
+                                                size="3"
+                                                disableReordering="true"/>
+                        </div>
+                        <div class="slds-m-bottom_x-small">
+                            <span class="slds-required">*</span><span>{! $Label.c.IE_Idea_ModalContents }</span>
+                        </div>
+                        <lightning:inputRichText class="slds-m-bottom_small" value="{!v.ideaBodyModal}" label="{! $Label.c.IE_Idea_ModalContents }">
+                            <lightning:insertImageButton/>
+                        </lightning:inputRichText>
+                        <div class="slds-m-bottom_x-small">
+                            <span>{!$Label.c.IE_Modal_Precautions}</span>
+                        </div>
+                        <div class="slds-m-bottom_medium">
+                            <span>{!$Label.c.IE_Modal_Content}</span>
+                        </div>
+                    </ui:scrollerWrapper>
+                </div>
+            <!--Modal/Popup Box Footer Starts here-->
+                <footer class="slds-modal__footer">
+                    <lightning:button
+                        variant="neutral"
+                        class="ie-idea--modal__cancel"
+                        label="{! $Label.c.IE_Idea_Cancel }"
+                        title="{! $Label.c.IE_Idea_Cancel }"
+                        onclick="{!c.closeModel}"/>
+                    <lightning:button
+                        variant="neutral"
+                        class="ie-idea--modal__draft"
+                        label="{! $Label.c.IE_Idea_DraftSave }"
+                        title="{! $Label.c.IE_Idea_DraftSave }"
+                        onclick="{!c.submitDraft}"/>
+                    <lightning:button
+                        variant="brand"
+                        class="ie-idea--modal__publish"
+                        label="{! $Label.c.IE_Idea_Publish }"
+                        title="{! $Label.c.IE_Idea_Publish }"
+                        onclick="{!c.submitDetails}"/>
+                </footer>
+            </div>
+        </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+</aura:component>

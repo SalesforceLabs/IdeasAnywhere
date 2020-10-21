@@ -1,0 +1,66 @@
+/**
+ * Copyright 2020 salesforce.com, inc
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
+
+.THIS .ie-idea--button__next,
+.THIS .ie-idea--button__prev {
+	background-color: var(--lwc-colorBackgroundButtonDefault);
+	border-color: var(--lwc-colorBorder);
+}
+
+.THIS .ie-idea--button__next:not([disabled]),
+.THIS .ie-idea--button__prev:not([disabled]) {
+	color: var(--lwc-brandTextLink);
+}
+
+.THIS .ie-idea--button__next:not([disabled]):hover,
+.THIS .ie-idea--button__next:not([disabled]):active,
+.THIS .ie-idea--button__prev:not([disabled]):hover,
+.THIS .ie-idea--button__prev:not([disabled]):active {
+	color: var(--lwc-brandTextLinkActive);
+	background-color: var(--lwc-colorBackgroundButtonDefaultActive);
+}
+
+@media screen and (max-width: 767px) {
+	.THIS .ie-mobile-block {
+		display: block;
+	}
+	.THIS .ie-pc-block {
+		display: none;
+	}
+	.THIS .ie-mobile-align-center {
+		text-align: center;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.THIS .ie-mobile-block {
+		display: none;
+	}
+	.THIS .ie-pc-block {
+		display: block;
+	}
+	.THIS .ie-pc-padding {
+		padding-left: 12px;
+		padding-left: 12px;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.THIS .ie-pc-margin {
+		margin-left: 12px;
+	}
+}
+
+.THIS .ie-background-white {
+	background: white;
+}
+
+.THIS.backgroundInverse {
+	position: relative;
+	background-color: #16325c;
+	height: 80px;
+}

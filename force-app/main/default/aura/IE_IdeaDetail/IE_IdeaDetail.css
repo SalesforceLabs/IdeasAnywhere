@@ -1,0 +1,114 @@
+/**
+ * Copyright 2020 salesforce.com, inc
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
+
+.THIS .ie-word-break {
+	word-break: break-all;
+}
+
+.THIS .ie-linkcolor {
+	color: #0070d2;
+}
+
+.THIS .ie-whitebackground {
+	background: white;
+}
+
+.THIS .new-section {
+	color: #ddd;
+	margin-top: 20px;
+	width: 100%;
+}
+
+.THIS .avatar-resize {
+	width: 3rem;
+	height: 2.5rem;
+	display: flex;
+	margin-right: 7px;
+}
+
+.THIS .ie-badge {
+	background: rgb(233, 234, 236);
+	width: 150px;
+	max-height: 40px;
+	text-align: center;
+	border-radius: 10px;
+	overflow: hidden;
+	align-items: baseline;
+}
+
+.THIS .ie-ideas-detail__comment-button {
+	overflow: hidden;
+}
+
+.THIS .ie-button {
+	color: var(--lwc-brandTextLink);
+	background-color: var(--lwc-colorBackgroundButtonDefault);
+	border-color: var(--lwc-colorBorder);
+}
+
+.THIS .ie-button:active,
+.THIS .ie-button:hover {
+	color: var(--lwc-brandTextLinkActive);
+	background-color: var(--lwc-colorBackgroundButtonDefaultActive);
+}
+
+.THIS .slds-badge {
+	padding: .05rem .5rem;
+	margin-right: .5rem;
+	font-size: .65rem;
+	color: #4a4a4a;
+}
+
+.THIS .slds-badge + .slds-badge {
+	margin-left: 0;
+}
+
+.THIS .ie-idea--link__back {
+	margin: .5rem 0;
+	display: inline-block;
+}
+
+.THIS .uiOutputRichText img,
+.THIS .slds-rich-text-editor__textarea img,
+.THIS lightning-formatted-rich-text img {
+	max-width: 600px;
+	width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+	.THIS .ie-mobile-block {
+		display: none;
+	}
+	.THIS .ie-other-block {
+		display: block;
+	}
+	.THIS .ie-phone-button-padding {
+		padding-left: .5rem;
+		padding-right: .5rem;
+	}
+
+	.THIS .ie-ideas-detail__info {
+		padding-left: 0;
+		margin-bottom: 1.5rem;
+	}
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+	.THIS .ie-ideas-detail__info {
+		padding-left: 0;
+		margin-bottom: 1.5rem;
+	}
+}
+
+@media screen and (min-width: 769px) {
+	.THIS .ie-mobile-block {
+		display: block;
+	}
+	.THIS .ie-other-block {
+		display: none;
+	}
+}

@@ -1,0 +1,62 @@
+/**
+ * Copyright 2020 salesforce.com, inc
+ * All rights reserved.
+ * SPDX-License-Identifier: BSD-3-Clause
+ * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+ */
+
+.THIS .slds-button_neutral,
+.THIS .slds-button_brand {
+	padding-left: 0.3rem;
+	padding-right: 0.3rem;
+	min-width: 80px;
+}
+
+.THIS.ie-idea--modal {
+	max-height: 100%;
+}
+
+.THIS .ie-idea--modal__draft,
+.THIS .ie-idea--modal__cancel {
+	color: var(--lwc-brandTextLink);
+	background-color: var(--lwc-colorBackgroundButtonDefault);
+	border-color: var(--lwc-colorBorder);
+}
+
+.THIS .ie-idea--modal__draft:hover,
+.THIS .ie-idea--modal__draft:active,
+.THIS .ie-idea--modal__cancel:hover,
+.THIS .ie-idea--modal__cancel:active {
+	color: var(--lwc-brandTextLinkActive);
+	background-color: var(--lwc-colorBackgroundButtonDefaultActive);
+}
+
+.THIS .ie-idea--modal__publish {
+	color: var(--lwc-colorTextBrandPrimary);
+	background-color: var(--lwc-brandAccessible);
+	border-color: var(--lwc-brandAccessible);
+}
+
+.THIS .ie-idea--modal__publish:hover,
+.THIS .ie-idea--modal__publish:active {
+	color: var(--lwc-colorTextBrandPrimary);
+	background-color: var(--lwc-brandAccessibleActive);
+	border-color: var(--lwc-brandAccessibleActive);
+}
+
+.THIS .ie-idea--internal__mobile.slds-modal__container {
+	justify-content: flex-start;
+	margin-top: .5rem;
+}
+
+.THIS .ie-idea--internal__mobile .ie-idea--scrollerWrapper {
+	height: 100%;
+	max-height: 50vh;
+}
+
+@media screen and (max-width: 434px) {
+	.THIS .ie-idea--internal__mobile .slds-button_neutral,
+	.THIS .ie-idea--internal__mobile .slds-button_brand {
+		min-width: auto;
+	}
+}

@@ -1,0 +1,150 @@
+<!--
+ Copyright 2020 salesforce.com, inc
+ All rights reserved.
+ SPDX-License-Identifier: BSD-3-Clause
+ For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+-->
+
+<aura:component controller="IE_IdeaMainController">
+  <!-- attribute -->
+  <aura:attribute name="ideaList" type="List" description="アイデア一覧" />
+  <aura:attribute name="categoryList" type="List" description="カテゴリリスト" />
+  <aura:attribute name="statusList" type="List" description="状態リスト" />
+  <aura:attribute name="sortList" type="List" description="ソートリスト" />
+  <aura:attribute name="isShowNegativeVote" type="Boolean" description="ネガティブ表示有無" />
+  <aura:attribute name="positiveVotePoint" type="Integer" description="ポジティブ投票ポイントを指定" />
+  <aura:attribute name="negativeVotePoint" type="Integer" description="ネガティブ投票ポイントを指定" />
+  <aura:attribute name="selectedCategory" type="String" description="検索対象カテゴリ" />
+  <aura:attribute name="selectedStatus" type="String" description="検索対象状況" />
+  <aura:attribute name="selectedSort" type="String" description="検索対象ソート" />
+  <aura:attribute name="isPost" type="Boolean" description="投稿済みフラグ" />
+  <aura:attribute name="isCommunity" type="Boolean" description="コミュニティフラグ" />
+  <aura:attribute name="isLoginUser" type="Boolean" description="ログインユーザフラグ" />
+  <aura:attribute
+    name="conditionInitialVal"
+    type="String"
+    description="カテゴリや状況のリスト初期値_ALL"
+    default="{!$Label.c.IE_Condition_Initial_Value}"
+  />
+
+  <aura:attribute name="defaultSort" type="String" description="デフォルトソート順" />
+  <aura:attribute name="showIdeaLimit" type="Integer" description="アイデア表示件数" />
+  <aura:attribute name="offset" type="Integer" description="オフセット" />
+  <aura:attribute name="offsetBegin" type="Integer" description="表示ページの最初件数" />
+  <aura:attribute name="offsetEnd" type="Integer" description="表示ページの最後件数" />
+  <aura:attribute name="listTotalCount" type="Integer" description="アイデア総数" />
+  <aura:attribute name="pageName" type="String" description="一覧ページ名" />
+  <aura:attribute
+    name="pageButtonDisabled"
+    type="Boolean"
+    description="doPreview・doNextボタンを押下時、非活性にする"
+  />
+
+  <!-- lightning service-->
+  <lightning:navigation aura:id="navService"/>
+  <aura:attribute name="pageReference" type="Object"/>
+
+  <!-- handler -->
+  <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
+
+  <lightning:spinner aura:id="mySpinner" />
+
+  <!-- body -->
+  <div class="slds-grid slds-wrap">
+    <!--カテゴリ PC表示用-->
+    <div class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-4 slds-box ie-pc-block ie-background-white">
+      <div>
+        <lightning:verticalNavigation selectedItem="{!v.selectedCategory}" onselect="{!c.doSelectedCategory}">
+          <lightning:verticalNavigationSection label="{! $Label.c.IE_Idea_Category }">
+            <aura:iteration items="{!v.categoryList}" var="cateRow">
+              <lightning:verticalNavigationItem label="{!cateRow.label}" name="{!cateRow.value}" />
+            </aura:iteration>
+          </lightning:verticalNavigationSection>
+        </lightning:verticalNavigation>
+      </div>
+    </div>
+
+    <div class="slds-col slds-small-size_1-of-1 slds-medium-size_3-of-4">
+      <div class="slds-grid slds-wrap slds-p-bottom_medium">
+        <!--カテゴリ スマホ表示用-->
+        <div
+          class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-4 slds-large-size_1-of-4 slds-p-left_small slds-p-right_small ie-mobile-block"
+        >
+          <lightning:combobox
+            name="category"
+            label="{! $Label.c.IE_Idea_Category }"
+            value="{!v.selectedCategory}"
+            placeholder="{! $Label.c.IE_Idea_CategorySelect }"
+            options="{!v.categoryList}"
+            onchange="{!c.doSelectedCategory}"
+          />
+        </div>
+        <div
+          class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-4 slds-large-size_1-of-4 slds-p-left_small slds-p-right_small"
+        >
+          <lightning:combobox
+            name="sort"
+            label="{! $Label.c.IE_Idea_Sort }"
+            value="{!v.selectedSort}"
+            placeholder="{! $Label.c.IE_Idea_SortSelect }"
+            options="{!v.sortList}"
+            onchange="{!c.doSelectedSort}"
+          />
+        </div>
+        <div
+          class="slds-col slds-small-size_1-of-1 slds-medium-size_1-of-4 slds-large-size_1-of-4 slds-p-left_small slds-p-right_small"
+        >
+          <lightning:combobox
+            name="status"
+            label="{! $Label.c.IE_Idea_Status }"
+            value="{!v.selectedStatus}"
+            placeholder="{! $Label.c.IE_Idea_StatusSelect }"
+            options="{!v.statusList}"
+            onchange="{!c.doSelectedStatus}"
+          />
+        </div>
+      </div>
+      <!-- List -->
+      <div class="ie-pc-padding" aura:id="ideaListMainDiv">
+        <aura:iteration items="{!v.ideaList}" var="ideaCell">
+          <c:IE_IdeaCell
+            recordId="{!ideaCell.recordId}"
+            title="{!ideaCell.title}"
+            ideaBody="{!ideaCell.ideaBody}"
+            categoryValue="{!ideaCell.categories}"
+            statusValue="{!ideaCell.status}"
+            points="{!ideaCell.points}"
+            postUserAvatarUrl="{!ideaCell.photoUrl}"
+            userName="{!ideaCell.userName}"
+            isShowNegativeVote="{!v.isShowNegativeVote}"
+            positiveVotePoint="{!v.positiveVotePoint}"
+            negativeVotePoint="{!v.negativeVotePoint}"
+            isPositive="{!ideaCell.isPositive}"
+            isPost="{!ideaCell.isPost}"
+            isLoginUser="{!v.isLoginUser}"
+            isCommunity="{!v.isCommunity}"
+            isClosed="{!ideaCell.isClosed}"
+          />
+        </aura:iteration>
+      </div>
+      <!-- / List -->
+      <div class="ie-mobile-align-center ie-pc-margin">
+        <lightning:button
+          class="slds-m-right_large ie-idea--button__prev"
+          variant="neutral"
+          disabled="{!v.offset==0 || v.pageButtonDisabled}"
+          onclick="{!c.doPrev}"
+          >{! $Label.c.IE_Idea_Prev }</lightning:button
+        >
+        <span class="slds-m-right_large">{!v.offsetBegin} to {!v.offsetEnd} of {!v.listTotalCount}</span>
+        <lightning:button
+          class="ie-idea--button__next"
+          variant="neutral"
+          disabled="{!v.offsetEnd==v.listTotalCount || v.pageButtonDisabled}"
+          onclick="{!c.doNext}"
+          >{! $Label.c.IE_Idea_Next }</lightning:button
+        >
+      </div>
+    </div>
+  </div>
+</aura:component>
