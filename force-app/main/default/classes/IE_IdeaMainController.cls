@@ -333,15 +333,22 @@ public with sharing class IE_IdeaMainController {
             ideaPost.Community__c = communityName;
             ideaPost.PostFlag__c = isPost;
 
+            SObjectAccessDecision decision;
+            List<IdeaPost__c> securityIdeaPostList = new List<IdeaPost__c>();
+
             if (IdeaPostList.size() != 0) {
                 //更新の場合(レコードが存在する場合には必ず更新になる)
                 //id設定後更新を行う
                 ideaPost.Id = IdeaPostList[0].Id;
-                update ideaPost;
+                securityIdeaPostList.add(ideaPost);
+                decision = Security.stripInaccessible(AccessType.UPDATABLE, securityIdeaPostList);
+                update decision.getRecords();
             } else {
                 //新規登録の場合
                 ideaPost.Status__c = Label.IE_Status_Initial_Value;
-                insert ideaPost;
+                securityIdeaPostList.add(ideaPost);
+                decision = Security.stripInaccessible(AccessType.CREATABLE, securityIdeaPostList);
+                insert decision.getRecords();
             }
 
             return (String)ideaPost.Id;
