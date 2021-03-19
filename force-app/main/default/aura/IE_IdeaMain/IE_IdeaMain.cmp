@@ -72,7 +72,7 @@
   <aura:handler name="modalShowEvt" event="c:IE_ModalShowEvt" action="{!c.modalShow}" /><!--モーダルを呼ぶ-->
   <aura:registerEvent name="ideaDetailShowEvt" type="c:IE_IdeaDetailShowEvt" />
 
-  <div class="slds-grid slds-box ie-idea--main" style="{!'background-color:' + v.backgroundColor}">
+  <div class="slds-grid slds-box ie-idea--main" aura:id="ieIdeaMain">
     <div class="slds-col slds-size_1-of-1 slds-medium-size--1-of-1">
       <div class="slds-m-bottom_medium">
         <aura:if isTrue="{!v.isLoginUser}">

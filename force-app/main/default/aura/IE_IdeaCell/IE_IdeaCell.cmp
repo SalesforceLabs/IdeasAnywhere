@@ -47,7 +47,7 @@
       <div
         class="slds-x-small-size_1-of-1 slds-small-size_1-of-1 slds-medium-size_1-of-1 ie-ideas-cell__main"
       >
-        <div class="ie-border_right">
+        <div class="ie-border_right ie-ideas-cell_main">
           <h1 class="slds-text-heading_small ie-text_bold">
             <aura:if isTrue="{!v.isPost}">
               <a href="javascript:void(0)" onclick="{!c.callShowIdeaDetail}">
@@ -58,7 +58,7 @@
               <aura:set attribute="else">
                 <div class="ie-word-break ie-padding_right">
                   <span class="slds-m-right_small">{!v.title}</span>
-                  <lightning:badge label="{! $Label.c.IE_Idea_Draft }" iconName="utility:edit_form" />
+                  <lightning:badge class="ltng-badge-override" label="{! $Label.c.IE_Idea_Draft }" iconName="utility:edit_form" />
                 </div>
               </aura:set>
             </aura:if>

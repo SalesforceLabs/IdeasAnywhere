@@ -189,7 +189,6 @@ public with sharing class IE_IdeaMainController {
             String UserId = UserInfo.getUserId();
 
             //urlでログインユーザの写真urlを取得
-
             User userInfo = Database.query('SELECT SmallPhotoUrl,Name FROM User WHERE User.ID = :UserId LIMIT 1');
             String LoginUserSmallPhotoUrl = userInfo.SmallPhotoUrl;
             String LoginUserName = userInfo.Name;
@@ -244,7 +243,10 @@ public with sharing class IE_IdeaMainController {
             IdeaComment__c IdeaCommentObj = new IdeaComment__c();
             IdeaCommentObj.CommentBody__c = ideaComment;
             IdeaCommentObj.IdeaPost__c = recordId;
-            insert IdeaCommentObj;
+
+            if (Schema.sObjectType.IdeaComment__c.isCreateable()) {
+                insert IdeaCommentObj;
+            }
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
@@ -258,7 +260,10 @@ public with sharing class IE_IdeaMainController {
         try {
             setClmName();
             IdeaPost__c deleteIdeaPostRow = new IdeaPost__c(Id = recordId);
-            delete deleteIdeaPostRow;
+
+            if (Schema.sObjectType.IdeaPost__c.isDeletable()) {
+                delete deleteIdeaPostRow;
+            }
         } catch (Exception e) {
             throw new AuraHandledException(e.getMessage());
         }
@@ -281,13 +286,15 @@ public with sharing class IE_IdeaMainController {
                 vote.IdeaPost__c = recordId;
             }
 
-            if (isLike.equals('delete')) {
+            if (isLike.equals('delete') && Schema.sObjectType.Vote__c.isDeletable()) {
                 delete vote;
             } else {
                 vote.VoteType__c = isLike.equals('true') ? cns_voteType_positive : cns_voteType_negative;
                 vote.Points__c = point;
 
-                upsert vote;
+                if (Schema.sObjectType.Vote__c.isCreateable() && Schema.sObjectType.Vote__c.isUpdateable()) {
+                    upsert vote;
+                }
             }
 
             IdeaCellInfo ideaCellInfo = getIdeaDetail(recordId);
