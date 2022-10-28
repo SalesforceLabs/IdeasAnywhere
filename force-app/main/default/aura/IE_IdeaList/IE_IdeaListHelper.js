@@ -69,7 +69,11 @@
 							_url = `?${q.join('&')}`;
 						}
 
-						history.replaceState(state, 'List Page', _url);
+						try {
+							history.replaceState(state, 'List Page', _url);
+						} catch (e) {
+							console.error('history.replaceState Error', e);
+						}
 					})
 				);
 			}

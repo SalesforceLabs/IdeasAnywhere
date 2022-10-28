@@ -13,6 +13,8 @@
     cmp.set('v.ideaBodyModal', '');
     //キャンセルの時、モダルidを初期化する
     cmp.set('v.isAnonymous', false);
+
+    $A.get("e.force:closeQuickAction").fire();
   },
   //新規作成
   submitDetails: function(cmp, evt, helper) {

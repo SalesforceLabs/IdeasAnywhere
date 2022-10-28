@@ -58,13 +58,16 @@
 		var title = cmp.get('v.title');
 		var ideaBody = cmp.get('v.ideaBody');
 		var categoryValue = cmp.get('v.categoryValue');
+		var isAnonymous = cmp.get('v.isAnonymous');
+
 		// call the event
 		var compEvent = cmp.getEvent('modalShowEvt');
 		compEvent.setParams({
 			recordIdModal: recordId,
 			ideaTitleModal: title,
 			ideaBodyModal: ideaBody,
-			categoryValue: categoryValue
+			categoryValue: categoryValue,
+			isAnonymous: isAnonymous
 		});
 		// fire the event
 		compEvent.fire();

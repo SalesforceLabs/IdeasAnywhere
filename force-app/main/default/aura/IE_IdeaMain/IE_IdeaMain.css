@@ -5,7 +5,8 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
  */
 
-.THIS .ie-idea--main {
+.THIS.ie-idea--main {
+	background-color: #fff;
 	box-shadow: var(--lwc-cardShadow, 0 2px 2px 0 rgba(0, 0, 0, 0.10));
 }
 

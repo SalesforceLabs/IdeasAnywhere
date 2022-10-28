@@ -1,0 +1,14 @@
+<!--
+ Copyright 2020 salesforce.com, inc
+ All rights reserved.
+ SPDX-License-Identifier: BSD-3-Clause
+ For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+-->
+<design:component >
+    <design:attribute name="communityName" label="Community Name" />
+    <design:attribute name="ideaTitleModal" label="Idea Title" />
+    <design:attribute name="categoryValueStr" label="Selected category" />
+    <design:attribute name="ideaBodyModal" label="Idea body text" />
+    <design:attribute name="anonymousCommentState" label="Anonymous flag" />
+    <design:attribute name="enableAnonymousPost" label="Allow anonymous posting" />
+</design:component>

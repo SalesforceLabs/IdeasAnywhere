@@ -28,7 +28,7 @@
 
 .THIS .ltng-badge-override {
   vertical-align: middle;
-  background: #fff240;
+  background: #ffe040;
   margin-right: .5rem;
   font-size: .65rem;
   color: #4a4a4a;
@@ -68,6 +68,11 @@
 
 .THIS .ie-word-break {
   word-break: break-all;
+}
+
+.THIS .ie-no-break {
+  word-break: keep-all;
+  white-space: nowrap;
 }
 
 .THIS .ie-linkcolor {

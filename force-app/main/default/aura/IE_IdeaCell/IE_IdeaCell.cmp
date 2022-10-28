@@ -26,9 +26,10 @@
   <aura:attribute name="isLoginUser" type="Boolean" description="ログインユーザフラグ" />
   <aura:attribute name="isCommunity" type="Boolean" description="コミュニティフラグ" />
   <aura:attribute name="isClosed" type="Boolean" description="完了フラグ" />
+  <aura:attribute name="isAnonymous" type="Boolean" description="匿名フラグ" />
 
-  <aura:attribute name="btnNameDelete" type="String" description="削除ボタン名" default="削除" />
-  <aura:attribute name="btnNameUpdate" type="String" description="編集ボタン名" default="編集" />
+  <aura:attribute name="btnNameDelete" type="String" description="削除ボタン名" default="{! $Label.c.IE_Button_Cell_Delete }" />
+  <aura:attribute name="btnNameUpdate" type="String" description="編集ボタン名" default="{! $Label.c.IE_Button_Cell_Edit }" />
 
   <!-- lightning service-->
   <lightning:navigation aura:id="navService"/>
@@ -58,7 +59,12 @@
               <aura:set attribute="else">
                 <div class="ie-word-break ie-padding_right">
                   <span class="slds-m-right_small">{!v.title}</span>
-                  <lightning:badge class="ltng-badge-override" label="{! $Label.c.IE_Idea_Draft }" iconName="utility:edit_form" />
+                  <span class="ie-no-break">
+                    <lightning:badge class="ltng-badge-override" label="{! $Label.c.IE_Idea_Draft }" iconName="utility:edit_form" />
+                    <aura:if isTrue="{! v.isAnonymous }">
+                      <lightning:badge class="ltng-badge-override" label="{! $Label.c.IE_Idea_AnonymousTitle }" iconName="utility:locker_service_console" />
+                    </aura:if>
+                  </span>
                 </div>
               </aura:set>
             </aura:if>
@@ -149,7 +155,7 @@
                 <lightning:avatar
                   variant="circle"
                   src="{!v.postUserAvatarUrl}"
-                  initials="UN"
+                  initials="{! $Label.c.IE_Comment_Anonymous_IconName }"
                   fallbackIconName="standard:person_account"
                 />
               </li>

@@ -20,6 +20,7 @@
   <aura:attribute name="positiveVotePoint" type="Integer" description="ポジティブ投票ポイントを指定" />
   <aura:attribute name="negativeVotePoint" type="Integer" description="ネガティブ投票ポイントを指定" />
   <aura:attribute name="sortListCommentList" type="List" description="ソートリスト（コメントリスト）" />
+  <aura:attribute name="anonymousCommentState" type="Boolean" default="false"/>
   <aura:attribute
     name="defaultCommentSort"
     type="String"
@@ -126,7 +127,7 @@
               <lightning:avatar
                 variant="circle"
                 src="{!v.postUserAvatarUrl}"
-                initials="UN"
+                initials="{! $Label.c.IE_Comment_Anonymous_IconName }"
                 fallbackIconName="standard:person_account"
                 alternativeText="{!v.postUserAvatarName}"
               />
@@ -172,10 +173,18 @@
           </div>
           <!-- コメント登録ボタン -->
           <div class="slds-m-bottom_large ie-ideas-detail__comment-button">
+            <lightning:buttonStateful
+              labelWhenOff="{! $Label.c.IE_Comment_Anonymous_False }"
+              labelWhenOn="{! $Label.c.IE_Comment_Anonymous_True }"
+              variant="text"
+              iconNameWhenOff="utility:preview"
+              iconNameWhenOn="utility:locker_service_console"
+              class="slds-m-right_small"
+              state="{! v.anonymousCommentState }"
+              onclick="{! c.handleAnonymousCommentStateClick }" />
             <lightning:button
               variant="brand"
               label="{! $Label.c.IE_Idea_PostComment }"
-              class="slds-float--right"
               title="Brand action"
               onclick="{! c.addComment }"
             />

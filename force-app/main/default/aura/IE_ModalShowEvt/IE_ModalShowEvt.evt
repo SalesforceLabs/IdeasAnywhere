@@ -10,4 +10,5 @@
     <aura:attribute name="ideaTitleModal" type="String" description="アイデアタイトル"/>
     <aura:attribute name="ideaBodyModal" type="String" description="アイデア内容"/>
     <aura:attribute name="categoryValue" type="List" description="選択されたカテゴリ" />
+    <aura:attribute name="isAnonymous" type="Boolean" description="匿名フラグ" />
 </aura:event>

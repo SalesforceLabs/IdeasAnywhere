@@ -9,7 +9,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>defaultSort</name>
-                    <value>トレンド</value>
+                    <value>Trend</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>showIdeaLimit</name>
@@ -21,7 +21,7 @@
         <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>アイデア</masterLabel>
+    <masterLabel>IdeasAnywhere</masterLabel>
     <template>
         <name>flexipage:defaultAppHomeTemplate</name>
     </template>

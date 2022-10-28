@@ -22,6 +22,7 @@
 	addComment: function(cmp, evt, helper) {
 		var recordId = cmp.get('v.recordId');
 		var ideaComment = cmp.get('v.comment');
+		var anonymous = cmp.get('v.anonymousCommentState');
 		var errorItemList = [];
 
 		//エラーメッセージの文字列を設定
@@ -29,7 +30,7 @@
 			errorItemList = [{ message: $A.get('$Label.c.IE_Fixed_Value_Comment') }];
 			helper.showError($A.get('$Label.c.IE_ErrMsg_Required'), errorItemList);
 		} else {
-			helper.addComment(cmp, recordId, ideaComment);
+			helper.addComment(cmp, recordId, ideaComment, anonymous);
 		}
 	},
 	showIdeaList: function(cmp, evt, helper) {
@@ -61,5 +62,9 @@
 			};
 			navService.navigate(pageReference);
 		}
+	},
+	handleAnonymousCommentStateClick: function (cmp, event, helper) {
+		var buttonstate = cmp.get('v.anonymousCommentState');
+		cmp.set('v.anonymousCommentState', !buttonstate);
 	}
 });

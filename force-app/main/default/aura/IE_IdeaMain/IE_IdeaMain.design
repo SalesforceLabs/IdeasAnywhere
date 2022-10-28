@@ -6,7 +6,7 @@
 -->
 
 <design:component label="Ideas Anywhere">
-    <design:attribute name="defaultSort" label="デフォルトソート順" description="デフォルトソート順" datasource="トレンド,最新,完了済み" default="トレンド" required = "true"/>
-    <design:attribute name="showIdeaLimit" label="アイデア表示件数" description="アイデア一覧に表示する件数" default="20" min = "1" max = "100" required = "true"/>
-    <design:attribute name="backgroundColor" label="背景色" description="背景色の指定" default="#FFFFFF" />
+    <design:attribute name="defaultSort" label="Default sort order" description="Default sort order" datasource="Trend,Latest,Closed" default="Trend" required = "true"/>
+    <design:attribute name="showIdeaLimit" label="Number of ideas" description="Number of ideas to display in the idea list" default="20" min = "1" max = "100" required = "true"/>
+    <design:attribute name="backgroundColor" label="Background Color" description="Background color specification" default="#FFFFFF" />
 </design:component>

@@ -55,7 +55,7 @@
     name="defaultSort"
     type="String"
     description="デフォルトソート順"
-    default="{! $Label.c.IE_Sort_Value_Trend }"
+    default="Trend"
     access="global"
   />
   <aura:attribute name="showIdeaLimit" type="Integer" description="アイデア表示件数" default="20" access="global" />
@@ -63,6 +63,8 @@
   <aura:attribute name="positiveVotePoint" type="Integer" description="ポジティブ投票ポイントを指定" />
   <aura:attribute name="negativeVotePoint" type="Integer" description="ネガティブ投票ポイントを指定" />
   <aura:attribute name="backgroundColor" type="String" description="背景色の指定" access="global" />
+  <aura:attribute name="enableAnonymousPost" type="Boolean" description="匿名投稿を許可する" default="false" access="global" />
+  <aura:attribute name="isAnonymous" type="Boolean" default="false"/>
 
   <!-- handler -->
   <aura:handler name="init" value="{!this}" action="{!c.doInit}" />
@@ -135,6 +137,8 @@
           isShowIdeaModal="{!v.isShowIdeaModal}"
           isCommunity="{! v.communityName != $Label.c.IE_Community_internal_Value }"
           pageName="{! v.pageName }"
+          isAnonymous="{! v.isAnonymous }"
+          enableAnonymousPost="{! v.enableAnonymousPost }"
         />
       </aura:if>
     </div>

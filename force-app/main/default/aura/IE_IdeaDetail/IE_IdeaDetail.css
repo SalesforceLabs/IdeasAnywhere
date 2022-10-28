@@ -42,6 +42,9 @@
 
 .THIS .ie-ideas-detail__comment-button {
 	overflow: hidden;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
 }
 
 .THIS .ie-button {

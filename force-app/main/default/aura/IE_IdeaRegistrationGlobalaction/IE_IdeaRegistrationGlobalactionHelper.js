@@ -36,6 +36,8 @@
 
         //初期化
         this.Initialization(cmp, resulteVal);
+
+        $A.get("e.force:closeQuickAction").fire();
       } else if (state === 'ERROR') {
         const errors = response.getError();
         console.log('errors : ' + errors);

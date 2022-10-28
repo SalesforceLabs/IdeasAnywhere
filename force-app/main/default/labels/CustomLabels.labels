@@ -4,7 +4,7 @@
         <fullName>IE_Comment_Show_Number</fullName>
         <categories>コメント表示件数</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>コメント表示件数</shortDescription>
         <value>30</value>
     </labels>
@@ -12,7 +12,7 @@
         <fullName>IE_Community_internal_Value</fullName>
         <categories>選択値</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>アイデア投稿のコミュニティ名項目の内部用の値</shortDescription>
         <value>内部</value>
     </labels>
@@ -20,7 +20,7 @@
         <fullName>IE_Condition_Initial_Value</fullName>
         <categories>初期値</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>初期値_アイデア一覧_取得条件</shortDescription>
         <value>All</value>
     </labels>
@@ -28,7 +28,7 @@
         <fullName>IE_Condition_MyIdea</fullName>
         <categories>初期値</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>アイデア一覧_私の投稿</shortDescription>
         <value>私の投稿</value>
     </labels>
@@ -36,7 +36,7 @@
         <fullName>IE_ErrMsg_NotExistIdeaConfigObj</fullName>
         <categories>エラーメッセージ</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>エラーメッセージ：アイデア設定情報が存在しない</shortDescription>
         <value>アイデア設定情報がありません。システム管理者に問合せてください。</value>
     </labels>
@@ -44,7 +44,7 @@
         <fullName>IE_ErrMsg_Record_Unavailable</fullName>
         <categories>エラーメッセージ</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>エラーメッセージ</shortDescription>
         <value>該当するアイデアが存在しません。削除されていないことを確認してください。</value>
     </labels>
@@ -52,7 +52,7 @@
         <fullName>IE_ErrMsg_Required</fullName>
         <categories>エラーメッセージ</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>エラーメッセージ：必須エラー</shortDescription>
         <value>{0}項目が未入力です。入力してください。</value>
     </labels>
@@ -60,7 +60,7 @@
         <fullName>IE_ErrMsg_SystemErr</fullName>
         <categories>エラーメッセージ</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>エラーメッセージ：想定外エラー</shortDescription>
         <value>エラーが発生しました。システム管理者に連絡してください。（エラー内容：{0})</value>
     </labels>
@@ -68,7 +68,7 @@
         <fullName>IE_Fixed_Value_Category</fullName>
         <categories>エラーメッセージ用固定値</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>エラーメッセージ用固定値</shortDescription>
         <value>カテゴリ</value>
     </labels>
@@ -76,7 +76,7 @@
         <fullName>IE_Fixed_Value_Comment</fullName>
         <categories>エラーメッセージ用固定値</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>エラーメッセージ用固定値</shortDescription>
         <value>コメント</value>
     </labels>
@@ -84,7 +84,7 @@
         <fullName>IE_Fixed_Value_Content</fullName>
         <categories>エラーメッセージ用固定値</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>エラーメッセージ用固定値</shortDescription>
         <value>内容,</value>
     </labels>
@@ -92,7 +92,7 @@
         <fullName>IE_Fixed_Value_Title</fullName>
         <categories>エラーメッセージ用固定値</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>エラーメッセージ用固定値</shortDescription>
         <value>タイトル,</value>
     </labels>
@@ -100,7 +100,7 @@
         <fullName>IE_Idea_AddComment</fullName>
         <categories>コメントを追記</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>コメントを追記</shortDescription>
         <value>コメントを追記</value>
     </labels>
@@ -108,7 +108,7 @@
         <fullName>IE_Idea_BackToList</fullName>
         <categories>戻る</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>戻る</shortDescription>
         <value>戻る</value>
     </labels>
@@ -116,7 +116,7 @@
         <fullName>IE_Idea_Cancel</fullName>
         <categories>キャンセル</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>キャンセル</shortDescription>
         <value>キャンセル</value>
     </labels>
@@ -124,7 +124,7 @@
         <fullName>IE_Idea_Category</fullName>
         <categories>カテゴリ</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>カテゴリ</shortDescription>
         <value>カテゴリ</value>
     </labels>
@@ -132,7 +132,7 @@
         <fullName>IE_Idea_CategorySelect</fullName>
         <categories>カテゴリ選択</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>カテゴリ選択</shortDescription>
         <value>カテゴリ選択</value>
     </labels>
@@ -140,7 +140,7 @@
         <fullName>IE_Idea_Comment</fullName>
         <categories>コメント</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>コメント</shortDescription>
         <value>コメント</value>
     </labels>
@@ -148,7 +148,7 @@
         <fullName>IE_Idea_Detail</fullName>
         <categories>メインラベル</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>メインラベル</shortDescription>
         <value>アイデア詳細</value>
     </labels>
@@ -156,7 +156,7 @@
         <fullName>IE_Idea_Draft</fullName>
         <categories>ドラフト</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>ドラフト</shortDescription>
         <value>ドラフト</value>
     </labels>
@@ -164,7 +164,7 @@
         <fullName>IE_Idea_DraftSave</fullName>
         <categories>ドラフト保存</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>ドラフト保存</shortDescription>
         <value>ドラフト保存</value>
     </labels>
@@ -172,7 +172,7 @@
         <fullName>IE_Idea_InputRequired</fullName>
         <categories>必須欄</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>必須欄</shortDescription>
         <value>必須欄</value>
     </labels>
@@ -180,7 +180,7 @@
         <fullName>IE_Idea_List</fullName>
         <categories>メインラベル</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>メインラベル</shortDescription>
         <value>アイデア一覧</value>
     </labels>
@@ -188,7 +188,7 @@
         <fullName>IE_Idea_ModalContents</fullName>
         <categories>内容</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>内容</shortDescription>
         <value>内容</value>
     </labels>
@@ -196,7 +196,7 @@
         <fullName>IE_Idea_ModalHeader</fullName>
         <categories>アイデア投稿</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>アイデア投稿</shortDescription>
         <value>アイデア投稿</value>
     </labels>
@@ -204,7 +204,7 @@
         <fullName>IE_Idea_ModalTitle</fullName>
         <categories>タイトル</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>タイトル</shortDescription>
         <value>タイトル</value>
     </labels>
@@ -212,7 +212,7 @@
         <fullName>IE_Idea_Next</fullName>
         <categories>次へ</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>次へ</shortDescription>
         <value>次へ</value>
     </labels>
@@ -220,7 +220,7 @@
         <fullName>IE_Idea_PickupTitle</fullName>
         <categories>ラベル</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>コメント（ピックアップ）ラベル</shortDescription>
         <value>担当者からのコメント</value>
     </labels>
@@ -228,7 +228,7 @@
         <fullName>IE_Idea_Point</fullName>
         <categories>ポイント</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>ポイント</shortDescription>
         <value>ポイント</value>
     </labels>
@@ -236,7 +236,7 @@
         <fullName>IE_Idea_Post</fullName>
         <categories>アイデア投稿</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>アイデア投稿</shortDescription>
         <value>アイデア投稿</value>
     </labels>
@@ -244,7 +244,7 @@
         <fullName>IE_Idea_PostComment</fullName>
         <categories>コメントを投稿</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>コメントを投稿</shortDescription>
         <value>コメントを投稿</value>
     </labels>
@@ -252,7 +252,7 @@
         <fullName>IE_Idea_Prev</fullName>
         <categories>前へ</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>前へ</shortDescription>
         <value>前へ</value>
     </labels>
@@ -260,7 +260,7 @@
         <fullName>IE_Idea_Publish</fullName>
         <categories>公開</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>公開</shortDescription>
         <value>公開</value>
     </labels>
@@ -268,7 +268,7 @@
         <fullName>IE_Idea_SelectedTarget</fullName>
         <categories>選択済み</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>選択済み</shortDescription>
         <value>選択済み</value>
     </labels>
@@ -276,7 +276,7 @@
         <fullName>IE_Idea_SelectionTarget</fullName>
         <categories>選択対象</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>選択対象</shortDescription>
         <value>選択対象</value>
     </labels>
@@ -284,7 +284,7 @@
         <fullName>IE_Idea_Showmore</fullName>
         <categories>Show more</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>Show more</shortDescription>
         <value>さらに表示</value>
     </labels>
@@ -292,7 +292,7 @@
         <fullName>IE_Idea_Sort</fullName>
         <categories>ソート</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>ソート</shortDescription>
         <value>ソート</value>
     </labels>
@@ -300,7 +300,7 @@
         <fullName>IE_Idea_SortSelect</fullName>
         <categories>ソート選択</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>ソート選択</shortDescription>
         <value>ソート選択</value>
     </labels>
@@ -308,7 +308,7 @@
         <fullName>IE_Idea_Status</fullName>
         <categories>状況</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>状況</shortDescription>
         <value>状況</value>
     </labels>
@@ -316,7 +316,7 @@
         <fullName>IE_Idea_StatusSelect</fullName>
         <categories>状況選択</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>状況選択</shortDescription>
         <value>状況選択</value>
     </labels>
@@ -324,7 +324,7 @@
         <fullName>IE_Idea_dislikeLabel</fullName>
         <categories>Disalikeラベル</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>IE_Idea_dislikeLabel</shortDescription>
         <value>よくない</value>
     </labels>
@@ -332,7 +332,7 @@
         <fullName>IE_Idea_likeLabel</fullName>
         <categories>Likeラベル</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>IE_Idea_likeLabel</shortDescription>
         <value>いいね</value>
     </labels>
@@ -340,7 +340,7 @@
         <fullName>IE_Modal_Content</fullName>
         <categories>モーダルラベル</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>モーダルラベル</shortDescription>
         <value>「ドラフト保存」を押下すると、編集と削除できますが、他のユーザは参照できません。「公開」を押下すると、編集ができなくなります。</value>
     </labels>
@@ -348,7 +348,7 @@
         <fullName>IE_Modal_Precautions</fullName>
         <categories>モーダルラベル</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>モーダルラベル</shortDescription>
         <value>※注意事項</value>
     </labels>
@@ -358,7 +358,7 @@
         <language>ja</language>
         <protected>true</protected>
         <shortDescription>選択値</shortDescription>
-        <value>完了済み</value>
+        <value>Closed</value>
     </labels>
     <labels>
         <fullName>IE_Sort_Value_Latest</fullName>
@@ -366,13 +366,13 @@
         <language>ja</language>
         <protected>true</protected>
         <shortDescription>選択値</shortDescription>
-        <value>最新</value>
+        <value>Latest</value>
     </labels>
     <labels>
         <fullName>IE_Sort_Value_New_Order</fullName>
         <categories>選択値</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>選択値</shortDescription>
         <value>新しい順</value>
     </labels>
@@ -380,7 +380,7 @@
         <fullName>IE_Sort_Value_Oldest_First</fullName>
         <categories>選択値</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>選択値</shortDescription>
         <value>古い順</value>
     </labels>
@@ -390,13 +390,13 @@
         <language>ja</language>
         <protected>true</protected>
         <shortDescription>選択値</shortDescription>
-        <value>トレンド</value>
+        <value>Trend</value>
     </labels>
     <labels>
         <fullName>IE_Status_Initial_Value</fullName>
         <categories>初期値</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>状況の初期値</shortDescription>
         <value>01Open</value>
     </labels>
@@ -404,7 +404,7 @@
         <fullName>IE_Successful_Completion</fullName>
         <categories>正常メッセージ</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>正常メッセージ：削除</shortDescription>
         <value>正常に削除しました。</value>
     </labels>
@@ -412,7 +412,7 @@
         <fullName>IE_Successful_Completion_Save</fullName>
         <categories>正常メッセージ</categories>
         <language>ja</language>
-        <protected>true</protected>
+        <protected>false</protected>
         <shortDescription>正常メッセージ：保存</shortDescription>
         <value>正常に保存しました。</value>
     </labels>

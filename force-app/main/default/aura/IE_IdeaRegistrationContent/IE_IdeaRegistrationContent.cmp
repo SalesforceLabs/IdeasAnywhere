@@ -1,0 +1,80 @@
+<!--
+ Copyright 2020 salesforce.com, inc
+ All rights reserved.
+ SPDX-License-Identifier: BSD-3-Clause
+ For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/BSD-3-Clause
+-->
+<aura:component controller="IE_IdeaMainController" implements="lightning:availableForFlowScreens" access="global">
+    <aura:attribute name="isLoginUser" type="String" description="UserID" />
+    <aura:attribute name="communityName" type="String" description="コミュニティ名" access="global" />
+    <aura:attribute name="ideaTitleModal" type="String" description="アイデアタイトルモーダル" default="" access="global" />
+    <aura:attribute name="categoryValue" type="List" description="選択されたカテゴリ" />
+    <aura:attribute name="categoryValueStr" type="String" description="選択されたカテゴリ" access="global" />
+    <aura:attribute name="categoryListModal" type="List" description="モーダル上表示するカテゴリリスト" default=""/>
+    <aura:attribute name="ideaBodyModal" type="String" description="アイデア内容モーダル" default="" access="global" />
+    <aura:attribute name="anonymousCommentState" type="Boolean" default="false" access="global"/>
+    <aura:attribute name="enableAnonymousPost" type="Boolean" default="false" access="global"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
+
+    <div class="slds-m-bottom_x-large">
+        <div class="slds-m-bottom_x-small slds-text-heading_small">
+            <span class="slds-required">*</span><span>{! $Label.c.IE_Idea_ModalTitle }</span>
+        </div>
+        <lightning:input maxlength="255" class="slds-m-bottom_large" variant="label-hidden" value="{!v.ideaTitleModal}"/>
+
+        <div class="row">
+            <div class="slds-text-heading_small">
+              <span class="slds-required">*</span><span>{! $Label.c.IE_Idea_Category }</span>
+            </div>
+            <lightning:dualListbox class="slds-m-bottom_large"
+                                name="category"
+                                sourceLabel="{! $Label.c.IE_Idea_SelectionTarget }"
+                                selectedLabel="{! $Label.c.IE_Idea_SelectedTarget }"
+                                options="{! v.categoryListModal }"
+                                onchange="{! c.handleChange }"
+                                value="{! v.categoryValue }"
+                                size="3"
+                                disableReordering="true"/>
+        </div>
+        <div class="slds-m-bottom_x-small slds-text-heading_small">
+            <span class="slds-required">*</span><span>{! $Label.c.IE_Idea_ModalContents }</span>
+        </div>
+        <lightning:inputRichText class="slds-m-bottom_large" value="{!v.ideaBodyModal}" label="{! $Label.c.IE_Idea_ModalContents }">
+            <lightning:insertImageButton/>
+        </lightning:inputRichText>
+
+        <!--
+        <aura:if isTrue="{! not(empty(v.isLoginUser))}">
+          <div class="slds-text-heading_small">
+            <span>{! $Label.c.IE_Idea_FileUpload }</span>
+          </div>
+          <div class="slds-m-bottom_large">
+            <lightning:fileUpload
+              label="{! $Label.c.IE_Idea_FileUpload_Label }"
+              name="fileUploader"
+              multiple="true"
+              recordId="{!v.isLoginUser}"
+              onuploadfinished="{!c.handleUploadFinished}" />
+          </div>
+        </aura:if>
+        -->
+
+        <aura:if isTrue="{! v.enableAnonymousPost }">
+          <div class="slds-text-heading_small">
+            <span>{! $Label.c.IE_Idea_AnonymousTitle }</span>
+          </div>
+          <div class="slds-m-top_medium slds-m-bottom_large">
+            <lightning:buttonStateful
+              labelWhenOff="{! $Label.c.IE_Comment_Anonymous_False }"
+              labelWhenOn="{! $Label.c.IE_Comment_Anonymous_True }"
+              variant="text"
+              iconNameWhenOff="utility:preview"
+              iconNameWhenOn="utility:locker_service_console"
+              class="slds-m-right_small"
+              state="{! v.anonymousCommentState }"
+              onclick="{! c.handleAnonymousCommentStateClick }" />
+          </div>
+        </aura:if>
+      </div>
+</aura:component>

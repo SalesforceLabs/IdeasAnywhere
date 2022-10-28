@@ -37,6 +37,7 @@
       cmp.set('v.recordIdModal', recordId);
       cmp.set('v.ideaTitleModal', evt.getParam('ideaTitleModal'));
       cmp.set('v.ideaBodyModal', evt.getParam('ideaBodyModal'));
+      cmp.set('v.isAnonymous', evt.getParam('isAnonymous'));
       cmp.set('v.categoryValue', evt.getParam('categoryValue').split(';'));
     }
     //モーダル画面表示

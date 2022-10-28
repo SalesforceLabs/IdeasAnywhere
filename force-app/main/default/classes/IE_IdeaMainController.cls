@@ -30,6 +30,7 @@ public with sharing class IE_IdeaMainController {
     private static String cns_clm_dislike = 'Dislike__c';
     private static String cns_clm_shownegativevote = 'ShowNegativeVote__c';
     private static String cns_clm_pagename = 'pageName__c';
+    private static String cns_clm_enableanonymouspost = 'enableAnonymousPost__c';
     private static String cns_clm_configcommunity = 'Community__c';
     private static String cns_clm_configcategories = 'Categories__c';
     private static String cns_clm_configstattus = 'Status__c';
@@ -49,7 +50,7 @@ public with sharing class IE_IdeaMainController {
     private static String cns_sortValueNewOrder = Label.IE_Sort_Value_New_Order;
     private static String cns_sortValueOldestFirst = Label.IE_Sort_Value_Oldest_First;
     private static String cns_communityInternalValue = Label.IE_Community_internal_Value;
-    private static String getIdeaPostSql = 'SELECT Id, Title__c, Body__c, Categories__c, Close__c, tolabel(Status__c), CreatedById, CreatedBy.Name, PointGrandTotal__c, CreatedBy.SmallPhotoUrl,PostFlag__c,CreatedDate FROM '+cns_clm_ideapost;
+    private static String getIdeaPostSql = 'SELECT Id, Title__c, Body__c, Categories__c, Close__c, tolabel(Status__c), CreatedById, CreatedBy.Name, PointGrandTotal__c, CreatedBy.SmallPhotoUrl,PostFlag__c,CreatedDate, Anonymous__c FROM '+cns_clm_ideapost;
     private static String getIdeaCommentCountSql = 'SELECT count() FROM IdeaComment__c where IdeaPost__c = :recordId';
 
     private static Void setClmName() {
@@ -70,7 +71,7 @@ public with sharing class IE_IdeaMainController {
         cns_clm_postflag = IdeaPost__c.PostFlag__c.getDescribe().getName();
         cns_clm_parentidea = IdeaPost__c.ParentIdea__c.getDescribe().getName();
         cns_clm_community = IdeaPost__c.Community__c.getDescribe().getName();
-        getIdeaPostSql = 'SELECT Id,'+cns_clm_title+','+cns_clm_body+','+cns_clm_categories+','+cns_clm_pointgrandtotal+','+cns_clm_postflag+', '+cns_clm_close+', tolabel('+cns_clm_status+'), CreatedById, CreatedBy.Name, CreatedBy.SmallPhotoUrl,CreatedDate FROM '+cns_clm_ideapost;
+        getIdeaPostSql = 'SELECT Id,'+cns_clm_title+','+cns_clm_body+','+cns_clm_categories+','+cns_clm_pointgrandtotal+','+cns_clm_postflag+', '+cns_clm_close+', tolabel('+cns_clm_status+'), CreatedById, CreatedBy.Name, CreatedBy.SmallPhotoUrl,CreatedDate,Anonymous__c FROM '+cns_clm_ideapost;
 
         //IdeaCommunitiesConfig__c
         cns_clm_ideacommunitiesconfig = IdeaCommunitiesConfig__c.getSObjectType().getDescribe().getName();
@@ -78,6 +79,7 @@ public with sharing class IE_IdeaMainController {
         cns_clm_dislike = IdeaCommunitiesConfig__c.Dislike__c.getDescribe().getName();
         cns_clm_shownegativevote = IdeaCommunitiesConfig__c.ShowNegativeVote__c.getDescribe().getName();
         cns_clm_pagename = IdeaCommunitiesConfig__c.pageName__c.getDescribe().getName();
+        cns_clm_enableanonymouspost = IdeaCommunitiesConfig__c.enableAnonymousPost__c.getDescribe().getName();
         cns_clm_configcommunity = IdeaCommunitiesConfig__c.Community__c.getDescribe().getName();
         cns_clm_configcategories = IdeaCommunitiesConfig__c.Categories__c.getDescribe().getName();
         cns_clm_configstattus = IdeaCommunitiesConfig__c.Status__c.getDescribe().getName();
@@ -114,7 +116,7 @@ public with sharing class IE_IdeaMainController {
             commInfo.communityName = communityName;
 
             // コミュニティ設定情報取得SOQL
-            String strCommConfQuery = ' SELECT '+cns_clm_configcategories+', '+cns_clm_configstattus+','+cns_clm_like+','+cns_clm_dislike+','+cns_clm_shownegativevote+','+cns_clm_pagename+' FROM '+cns_clm_ideacommunitiesconfig+' WHERE '+cns_clm_configcommunity+' = :communityName LIMIT 1 ';
+            String strCommConfQuery = ' SELECT '+cns_clm_configcategories+', '+cns_clm_configstattus+','+cns_clm_like+','+cns_clm_dislike+','+cns_clm_shownegativevote+','+cns_clm_pagename+','+cns_clm_enableanonymouspost + ' FROM '+cns_clm_ideacommunitiesconfig+' WHERE '+cns_clm_configcommunity+' = :communityName LIMIT 1 ';
             List<IdeaCommunitiesConfig__c> IdeaConfList = Database.query(strCommConfQuery);
 
             if (IdeaConfList.size() > 0) {
@@ -166,6 +168,8 @@ public with sharing class IE_IdeaMainController {
 	                    commInfo.pageName = (String) IdeaConf.pageName__c;
                     }
                 }
+                // 匿名フラグ設定
+                commInfo.enableAnonymousPost = IdeaConf.enableAnonymousPost__c;
             } else {
                 throw new IEException(Label.IE_ErrMsg_NotExistIdeaConfigObj);
             }
@@ -217,8 +221,8 @@ public with sharing class IE_IdeaMainController {
             iri.isClosed = ideaRow.Close__c;
             iri.userName = LoginUserName;
             iri.photoUrl = LoginUserSmallPhotoUrl;
-            iri.postUserName = ideaRow.createdBy.Name;
-            iri.postUserPhotoUrl = ideaRow.createdBy.SmallPhotoUrl;
+            iri.postUserName = ideaRow.Anonymous__c? System.Label.IE_Comment_Anonymous_Name : ideaRow.createdBy.Name;
+            iri.postUserPhotoUrl = ideaRow.Anonymous__c? '': ideaRow.createdBy.SmallPhotoUrl;
             iri.userId = ideaRow.CreatedById;
             iri.status = ideaRow.Status__c;
 
@@ -237,12 +241,13 @@ public with sharing class IE_IdeaMainController {
     * アイデア詳細_コメントを挿入する
     */
     @AuraEnabled
-    public static void submitComment(String recordId, String ideaComment) {
+    public static void submitComment(String recordId, String ideaComment, Boolean anonymous) {
         try {
             setClmName();
             IdeaComment__c IdeaCommentObj = new IdeaComment__c();
             IdeaCommentObj.CommentBody__c = ideaComment;
             IdeaCommentObj.IdeaPost__c = recordId;
+            IdeaCommentObj.Anonymous__c = anonymous;
 
             if (Schema.sObjectType.IdeaComment__c.isCreateable()) {
                 insert IdeaCommentObj;
@@ -309,7 +314,7 @@ public with sharing class IE_IdeaMainController {
     * 新規アイデアのinsertを行う
     */
     @AuraEnabled
-    public static String submitIdea(String ideaTitleModal, String ideaBodyModal, List<String> categoryModal, Boolean isPost, String recordId, integer point) {
+    public static String submitIdea(String ideaTitleModal, String ideaBodyModal, List<String> categoryModal, Boolean isPost, String recordId, integer point, Boolean anonymous) {
         try {
             setClmName();
             String categoryModalString = '';
@@ -334,6 +339,7 @@ public with sharing class IE_IdeaMainController {
             ideaPost.Title__c = ideaTitleModal;
             ideaPost.Body__c = ideaBodyModal;
             ideaPost.Categories__c = categoryModalString;
+            ideaPost.Anonymous__c = anonymous;
 
             //コミュニティ取得
             String communityName = getCommunityName();
@@ -390,7 +396,7 @@ public with sharing class IE_IdeaMainController {
             Integer commentCount = Database.countQuery(getIdeaCommentCountSql);
             ideaCommentListInfo.grandCommentCount = commentCount;
 
-            String selectQuery = 'SELECT createdBy.Name, createdBy.SmallPhotoUrl,'+cns_clm_commentbody+',CreatedDate,'+cns_clm_pickup+' FROM '+ cns_clm_ideacomment + ' WHERE '+cns_clm_ideacommentideapost+' = :recordId ORDER BY CreatedDate';
+            String selectQuery = 'SELECT createdBy.Name, createdBy.SmallPhotoUrl,'+cns_clm_commentbody+',CreatedDate, Anonymous__c, '+cns_clm_pickup+' FROM '+ cns_clm_ideacomment + ' WHERE '+cns_clm_ideacommentideapost+' = :recordId ORDER BY CreatedDate';
             String selectQuerySort = ' ASC';
 
             if (selectedSort.equals(cns_sortValueNewOrder)) {
@@ -415,10 +421,11 @@ public with sharing class IE_IdeaMainController {
                 String createdDateChanged = createdDate.year() + '/' + createdDate.month() + '/' + createdDate.day();
 
                 icb.CreatedDate = createdDateChanged;
-                icb.SmallPhotoUrl = tmpIdeaComment.createdBy.SmallPhotoUrl;
-                icb.Name = tmpIdeaComment.createdBy.Name;
+                icb.SmallPhotoUrl = tmpIdeaComment.Anonymous__c? '' : tmpIdeaComment.createdBy.SmallPhotoUrl;
+                icb.Name = tmpIdeaComment.Anonymous__c? System.Label.IE_Comment_Anonymous_Name : tmpIdeaComment.createdBy.Name;
                 icb.isPickup = tmpIdeaComment.Pickup__c;
                 icb.CommentBody = tmpIdeaComment.CommentBody__c;
+                icb.isAnonymous = tmpIdeaComment.Anonymous__c;
                 icbList.add(icb);
             }
 
@@ -517,15 +524,17 @@ public with sharing class IE_IdeaMainController {
                 ideaCell.ideaBody = iRow.Body__c;
                 ideaCell.points = String.valueOf(iRow.PointGrandTotal__c.format());
                 ideaCell.status = iRow.Status__c;
+                //匿名フラグ
+                ideaCell.isAnonymous = iRow.Anonymous__c;
                 //完了フラグ
                 ideaCell.isClosed = iRow.Close__c;
                 //カテゴリ情報
                 ideaCell.categories = iRow.Categories__c;
                 //　イメージURL
                 if (iRow.CreatedBy.SmallPhotoUrl != null) {
-                    ideaCell.photoUrl = iRow.CreatedBy.SmallPhotoUrl;
+                    ideaCell.photoUrl = iRow.Anonymous__c? '' : iRow.CreatedBy.SmallPhotoUrl;
                 }
-                ideaCell.userName = iRow.CreatedBy.Name;
+                ideaCell.userName = iRow.Anonymous__c? System.Label.IE_Comment_Anonymous_Name : iRow.CreatedBy.Name;
                 //投票済アイデアの場合、投票区分を設定
                 if (voteTypeByIdeaMap.containsKey(iRow.Id)) {
                     ideaCell.isVoted = true;
@@ -575,6 +584,9 @@ public with sharing class IE_IdeaMainController {
         /** List Page Name */
         @AuraEnabled
         public String pageName { get; set; }
+        /** 匿名フラグ */
+        @AuraEnabled
+        public Boolean enableAnonymousPost { get; set; }
         CommunityInfo() {
             // 初期値設定
             communityName = cns_strBlank;
@@ -636,6 +648,9 @@ public with sharing class IE_IdeaMainController {
         /** 投稿者ログイン写真 */
         @AuraEnabled
         public String postUserPhotoUrl { get; set; }
+        /** 匿名フラグ */
+        @AuraEnabled
+        public Boolean isAnonymous { get; set; }
 
         IdeaCellInfo() {
             // 初期値設定
@@ -696,6 +711,9 @@ public with sharing class IE_IdeaMainController {
         //コメント
         @AuraEnabled
         public String CommentBody { get; set; }
+        //匿名フラグ
+        @AuraEnabled
+        public Boolean isAnonymous { get; set; }
 
         IdeaCommentBean() {
             // 初期値設定

@@ -75,12 +75,13 @@
 		});
 		$A.enqueueAction(action);
 	},
-	addComment: function(cmp, recordId, ideaComment) {
+	addComment: function(cmp, recordId, ideaComment, anonymous) {
 		// サーバ処理呼出
 		var action = cmp.get('c.submitComment');
 		action.setParams({
 			recordId: recordId,
-			ideaComment: ideaComment
+			ideaComment: ideaComment,
+			anonymous: anonymous
 		});
 		// set a call back
 		action.setCallback(this, function(response) {
@@ -115,7 +116,7 @@
 		messageList.push(message);
 		var toastEvent = $A.get('e.force:showToast');
 		toastEvent.setParams({
-			message: '必須欄',
+			message: $A.get('$Label.c.IE_Idea_InputRequired'),
 			messageTemplate: messageTemplate,
 			messageTemplateData: messageList,
 			type: 'error'

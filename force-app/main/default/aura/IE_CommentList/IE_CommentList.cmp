@@ -47,7 +47,7 @@
                         <aura:iteration items="{!v.pickupList}" var="pickupCell">
                             <li class="ie-main-item ie-comment-item slds-grid">
                                 <div class="slds-col">
-                                    <lightning:avatar class="ie-avatar" variant="circle" src="{!pickupCell.SmallPhotoUrl}" initials="UN" fallbackIconName="standard:person_account" />
+                                    <lightning:avatar class="ie-avatar" variant="circle" src="{!pickupCell.SmallPhotoUrl}" initials="{! $Label.c.IE_Comment_Anonymous_IconName }" fallbackIconName="standard:person_account" />
                                 </div>
                                 <div class="slds-col slds-p-left_small">
                                     <ui:outputText value="{!pickupCell.Name +' - '+ pickupCell.CreatedDate}" /><br />
@@ -62,7 +62,7 @@
                 <aura:iteration items="{!v.commentList}" var="commentCell">
                     <li class="ie-main-item ie-comment-item slds-grid">
                         <div class="slds-col">
-                            <lightning:avatar class="ie-avatar" variant="circle" src="{!commentCell.SmallPhotoUrl}" initials="UN" fallbackIconName="standard:person_account" />
+                            <lightning:avatar class="ie-avatar" variant="circle" src="{!commentCell.SmallPhotoUrl}" initials="{! $Label.c.IE_Comment_Anonymous_IconName }" fallbackIconName="standard:person_account" />
                         </div>
                         <div class="slds-col slds-p-left_small">
                             <ui:outputText value="{!commentCell.Name +' - '+ commentCell.CreatedDate}" /><br />

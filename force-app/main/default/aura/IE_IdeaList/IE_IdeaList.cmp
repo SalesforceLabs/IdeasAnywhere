@@ -124,6 +124,7 @@
             isLoginUser="{!v.isLoginUser}"
             isCommunity="{!v.isCommunity}"
             isClosed="{!ideaCell.isClosed}"
+            isAnonymous="{!ideaCell.isAnonymous}"
           />
         </aura:iteration>
       </div>

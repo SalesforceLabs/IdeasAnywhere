@@ -9,7 +9,7 @@
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>defaultSort</name>
-                    <value>トレンド</value>
+                    <value>Trend</value>
                 </componentInstanceProperties>
                 <componentInstanceProperties>
                     <name>showIdeaLimit</name>
@@ -141,7 +141,7 @@
         <name>main</name>
         <type>Region</type>
     </flexiPageRegions>
-    <masterLabel>アイデア投稿 レコードページ</masterLabel>
+    <masterLabel>IdeasAnywhere Post Record Page</masterLabel>
     <sobjectType>IdeaPost__c</sobjectType>
     <template>
         <name>flexipage:recordHomeSingleColNoHeaderTemplateDesktop</name>

@@ -79,7 +79,7 @@ public with sharing class IE_IdeaMainControllerTest {
         //execute test
         System.Test.startTest();
 
-        IE_IdeaMainController.submitComment(ideaList[0].Id, 'CommentBody');
+        IE_IdeaMainController.submitComment(ideaList[0].Id, 'CommentBody', true);
 
         System.Test.stopTest();
         System.assert(true);
@@ -169,7 +169,7 @@ public with sharing class IE_IdeaMainControllerTest {
         //execute test
         System.Test.startTest();
 
-        IE_IdeaMainController.submitIdea('ideaTitleModal','ideaBodyModal',cateList, true, ideaList[0].Id, 50);
+        IE_IdeaMainController.submitIdea('ideaTitleModal','ideaBodyModal',cateList, true, ideaList[0].Id, 50, true);
 
         System.Test.stopTest();
         System.assert(true);
