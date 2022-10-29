@@ -136,11 +136,14 @@
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <type>Default</type>
+        <comment>Action override created by Lightning App Builder during activation.</comment>
+        <content>IdeaExchangeComment</content>
+        <formFactor>Small</formFactor>
+        <skipRecordTypeSelect>false</skipRecordTypeSelect>
+        <type>Flexipage</type>
     </actionOverrides>
     <actionOverrides>
         <actionName>View</actionName>
-        <formFactor>Small</formFactor>
         <type>Default</type>
     </actionOverrides>
     <allowInChatterGroups>false</allowInChatterGroups>
@@ -157,55 +160,13 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>ReadWrite</externalSharingModel>
-    <fields>
-        <fullName>CommentBody__c</fullName>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <label>コメント内容</label>
-        <length>32768</length>
-        <trackTrending>false</trackTrending>
-        <type>Html</type>
-        <visibleLines>25</visibleLines>
-    </fields>
-    <fields>
-        <fullName>IdeaPost__c</fullName>
-        <deleteConstraint>SetNull</deleteConstraint>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <label>アイデア投稿</label>
-        <referenceTo>IdeaPost__c</referenceTo>
-        <relationshipLabel>アイデアコメント</relationshipLabel>
-        <relationshipName>ref_IdeaComment_IdeaPost</relationshipName>
-        <required>false</required>
-        <trackTrending>false</trackTrending>
-        <type>Lookup</type>
-    </fields>
-    <fields>
-        <fullName>Pickup__c</fullName>
-        <defaultValue>false</defaultValue>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <label>ピン留め</label>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
     <label>アイデアコメント</label>
-    <listViews>
-        <fullName>All</fullName>
-        <columns>NAME</columns>
-        <columns>IdeaPost__c</columns>
-        <columns>Pickup__c</columns>
-        <columns>CommentBody__c</columns>
-        <columns>LAST_UPDATE</columns>
-        <filterScope>Everything</filterScope>
-        <label>すべて選択</label>
-    </listViews>
     <nameField>
         <displayFormat>C-{0000000000}</displayFormat>
         <label>管理No</label>
         <type>AutoNumber</type>
     </nameField>
-    <searchLayouts/>
+    <searchLayouts></searchLayouts>
     <sharingModel>ReadWrite</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>

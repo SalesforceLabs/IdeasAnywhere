@@ -155,117 +155,7 @@
     <enableSharing>true</enableSharing>
     <enableStreamingApi>true</enableStreamingApi>
     <externalSharingModel>Read</externalSharingModel>
-    <fields>
-        <fullName>Categories__c</fullName>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <inlineHelpText>コミュニティで使用するカテゴリを選択してください。</inlineHelpText>
-        <label>カテゴリ</label>
-        <required>true</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>MultiselectPicklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetName>IdeaCategories</valueSetName>
-        </valueSet>
-        <visibleLines>5</visibleLines>
-    </fields>
-    <fields>
-        <fullName>Community__c</fullName>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <inlineHelpText>対象コミュニティを選択してください。</inlineHelpText>
-        <label>コミュニティ名</label>
-        <required>false</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Picklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetName>Community</valueSetName>
-        </valueSet>
-    </fields>
-    <fields>
-        <fullName>Dislike__c</fullName>
-        <defaultValue>-10</defaultValue>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <label>Dislikeポイント</label>
-        <precision>3</precision>
-        <required>true</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>Like__c</fullName>
-        <defaultValue>10</defaultValue>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <label>Likeポイント</label>
-        <precision>3</precision>
-        <required>true</required>
-        <scale>0</scale>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Number</type>
-        <unique>false</unique>
-    </fields>
-    <fields>
-        <fullName>ShowNegativeVote__c</fullName>
-        <defaultValue>true</defaultValue>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <label>ネガティブ投票表示</label>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Checkbox</type>
-    </fields>
-    <fields>
-        <fullName>Status__c</fullName>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <inlineHelpText>コミュニティで使用する状況を選択してください。</inlineHelpText>
-        <label>状況</label>
-        <required>true</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>MultiselectPicklist</type>
-        <valueSet>
-            <restricted>true</restricted>
-            <valueSetName>IdeaStatus</valueSetName>
-        </valueSet>
-        <visibleLines>5</visibleLines>
-    </fields>
-    <fields>
-        <fullName>pageName__c</fullName>
-        <deprecated>false</deprecated>
-        <externalId>false</externalId>
-        <label>一覧ページ名</label>
-        <length>255</length>
-        <required>true</required>
-        <trackHistory>false</trackHistory>
-        <trackTrending>false</trackTrending>
-        <type>Text</type>
-        <unique>false</unique>
-    </fields>
     <label>アイデア設定</label>
-    <listViews>
-        <fullName>All</fullName>
-        <columns>NAME</columns>
-        <columns>Categories__c</columns>
-        <columns>Community__c</columns>
-        <columns>pageName__c</columns>
-        <columns>Status__c</columns>
-        <columns>Like__c</columns>
-        <columns>Dislike__c</columns>
-        <columns>ShowNegativeVote__c</columns>
-        <filterScope>Everything</filterScope>
-        <label>すべて選択</label>
-    </listViews>
     <nameField>
         <displayFormat>ICF-{000}</displayFormat>
         <label>管理No</label>
@@ -283,22 +173,6 @@
         <searchResultsAdditionalFields>Dislike__c</searchResultsAdditionalFields>
         <searchResultsAdditionalFields>ShowNegativeVote__c</searchResultsAdditionalFields>
     </searchLayouts>
-    <sharingModel>ReadWrite</sharingModel>
-    <validationRules>
-        <fullName>LikeDislikePoint</fullName>
-        <active>true</active>
-        <errorConditionFormula>IF(
- OR(
-  Like__c &lt; 1,
-  Like__c &gt; 99,
-  Dislike__c &lt; -99,
-  Dislike__c &gt; -1
- ),
- true,
- false
-)</errorConditionFormula>
-        <errorDisplayField>Like__c</errorDisplayField>
-        <errorMessage>Likeは1~99、Dislikeは-1~-99の間で指定してください。</errorMessage>
-    </validationRules>
+    <sharingModel>Read</sharingModel>
     <visibility>Public</visibility>
 </CustomObject>
