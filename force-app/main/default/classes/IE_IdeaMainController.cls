@@ -56,7 +56,7 @@ public with sharing class IE_IdeaMainController {
     private static Void setClmName() {
         List<String> classNameParts = String.valueOf(IE_IdeaMainController.class).split('\\.', 2);
 
-        if (classNameParts.size() > 0) {
+        if (classNameParts.size() > 1) {
 	        namespace_prefix  = classNameParts[0];
         }
 
