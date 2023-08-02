@@ -482,15 +482,15 @@ public with sharing class IE_IdeaMainController {
             //ソート(トレンド、最新)、offsetの設定を行う
             if (sortVal != null && !String.isBlank(sortVal)) {
                 if (sortVal.equals(cns_sortValueTrend)) {
-                    strOrderbyQuery = ' ORDER BY '+cns_clm_close+' ASC, '+cns_clm_pointgrandtotal+' ';
+                    strOrderbyQuery = ' ORDER BY '+cns_clm_pointgrandtotal+' DESC, CreatedDate DESC NULLS LAST ';
                 } else if (sortVal.equals(cns_sortValueClosed)) {
-                    strOrderbyQuery = ' ORDER BY '+cns_clm_close+' DESC, CreatedDate ';
+                    strOrderbyQuery = ' ORDER BY '+cns_clm_close+' DESC, CreatedDate DESC NULLS LAST ';
                 } else {
-                    strOrderbyQuery = ' ORDER BY '+cns_clm_close+' ASC, CreatedDate ';
+                    strOrderbyQuery = ' ORDER BY CreatedDate DESC NULLS LAST ';
                 }
             }
 
-            String strSortLimitOffsetQuery = ' DESC LIMIT :showIdeaLimit OFFSET :offset';
+            String strSortLimitOffsetQuery = ' LIMIT :showIdeaLimit OFFSET :offset';
             // ---　アイデア投稿オブジェクト取得クエリ生成　END ---　
 
             // クエリ実行
