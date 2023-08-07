@@ -9,92 +9,92 @@
 */
 public with sharing class IE_IdeaMainController {
     /** 定数 */
-    private static String namespace_prefix = '';
-    private static String cns_voteType_positive = 'Like';
-    private static String cns_voteType_negative = 'DisLike';
-    private static String cns_strBlank = '';
-    private static String cns_strSemicolon = ';';
-    private static String cns_strNewLine = '\\n';
-    private static String cns_clm_ideapost = 'IdeaPost__c';
-    private static String cns_clm_ideacommunitiesconfig = 'IdeaCommunitiesConfig__c';
-    private static String cns_clm_categories = 'Categories__c';
-    private static String cns_clm_status = 'Status__c';
-    private static String cns_clm_close = 'Close__c';
-    private static String cns_clm_title = 'Title__c';
-    private static String cns_clm_body = 'Body__c';
-    private static String cns_clm_pointgrandtotal = 'PointGrandTotal__c';
-    private static String cns_clm_postflag = 'PostFlag__c';
-    private static String cns_clm_parentidea = 'ParentIdea__c';
-    private static String cns_clm_community = 'Community__c';
-    private static String cns_clm_like = 'like__c';
-    private static String cns_clm_dislike = 'Dislike__c';
-    private static String cns_clm_shownegativevote = 'ShowNegativeVote__c';
-    private static String cns_clm_pagename = 'pageName__c';
-    private static String cns_clm_enableanonymouspost = 'enableAnonymousPost__c';
-    private static String cns_clm_configcommunity = 'Community__c';
-    private static String cns_clm_configcategories = 'Categories__c';
-    private static String cns_clm_configstattus = 'Status__c';
-    private static String cns_clm_vote = 'Vote__c';
-    private static String cns_clm_votetype = 'VoteType__c';
-    private static String cns_clm_ideacomment = 'IdeaComment__c';
-    private static String cns_clm_ideacommentideapost = 'IdeaPost__c';
-    private static String cns_clm_pickup = 'Pickup__c';
-    private static String cns_clm_commentbody = 'CommentBody__c';
-    private static String cns_clm_points = Vote__c.Points__c.getDescribe().getName();
-    private static String cns_clm_voteideapost = Vote__c.IdeaPost__c.getDescribe().getName();
-    private static String cns_conditionInitialVal = Label.IE_Condition_Initial_Value;
-    private static String cns_conditionMyIdea = Label.IE_Condition_MyIdea;
-    private static String cns_sortValueTrend = Label.IE_Sort_Value_Trend;
-    private static String cns_sortValueLatest = Label.IE_Sort_Value_Latest;
-    private static String cns_sortValueClosed = Label.IE_Sort_Value_Closed;
-    private static String cns_sortValueNewOrder = Label.IE_Sort_Value_New_Order;
-    private static String cns_sortValueOldestFirst = Label.IE_Sort_Value_Oldest_First;
-    private static String cns_communityInternalValue = Label.IE_Community_internal_Value;
-    private static String getIdeaPostSql = 'SELECT Id, Title__c, Body__c, Categories__c, Close__c, tolabel(Status__c), CreatedById, CreatedBy.Name, PointGrandTotal__c, CreatedBy.SmallPhotoUrl,PostFlag__c,CreatedDate, Anonymous__c FROM '+cns_clm_ideapost;
+    private static String NAMESPACE_PREFIX = '';
+    private static String CNS_VOTETYPE_POSITIVE = 'Like';
+    private static String CNS_VOTETYPE_NEGATIVE = 'DisLike';
+    private static String CNS_STR_BLANK = '';
+    private static String CNS_STR_SEMICOLON = ';';
+    private static String CNS_STR_NEWLINE = '\\n';
+    private static String CNS_CLI_IDEAPOST = 'IdeaPost__c';
+    private static String CNS_CLM_IDEACOMMUNITIESCONFIG = 'IdeaCommunitiesConfig__c';
+    private static String CNS_CLM_CATEGORIES = 'Categories__c';
+    private static String CNS_CLM_STATUS = 'Status__c';
+    private static String CNS_CLM_CLOSE = 'Close__c';
+    private static String CNS_CLM_TITLE = 'Title__c';
+    private static String CNS_CLM_BODY = 'Body__c';
+    private static String CNS_CLM_POINTGRANDTOTAL = 'PointGrandTotal__c';
+    private static String CNS_CLM_POSTFLAG = 'PostFlag__c';
+    private static String CNS_CLM_PARENTIDEA = 'ParentIdea__c';
+    private static String CNS_CLM_COMMUNITY = 'Community__c';
+    private static String CNS_CLM_LIKE = 'like__c';
+    private static String CNS_CLM_DISLIKE = 'Dislike__c';
+    private static String CNS_CLM_SHOWNEGATIVEVOTE = 'ShowNegativeVote__c';
+    private static String CNS_CLM_PAGENAME = 'pageName__c';
+    private static String CNS_CLM_ENABLEANONYMOUSPOST = 'enableAnonymousPost__c';
+    private static String CNS_CLM_COMFIGCOMMUNITY = 'Community__c';
+    private static String CNS_CLM_COMFIGCATEGORIES = 'Categories__c';
+    private static String CNS_CLM_COMFIGSTATUS = 'Status__c';
+    private static String CNS_CLM_VOTE = 'Vote__c';
+    private static String CNS_CLM_VOTETYPE = 'VoteType__c';
+    private static String CNS_CLM_IDEACOMMENT = 'IdeaComment__c';
+    private static String CNS_CLM_IDEACOMMENT_IDEAPOST = 'IdeaPost__c';
+    private static String CNS_CLM_PICKUP = 'Pickup__c';
+    private static String CNS_CLM_COMMENTBODY = 'CommentBody__c';
+    private static String CNS_CLM_POINTS = Vote__c.Points__c.getDescribe().getName();
+    private static String CNS_CLM_VOTEIDEAPOST = Vote__c.IdeaPost__c.getDescribe().getName();
+    private static String CNS_CONDITiONINITIALVAL = Label.IE_Condition_Initial_Value;
+    private static String CNS_CONDITiONMYIDEA = Label.IE_Condition_MyIdea;
+    private static String CNS_SORTVALUE_TREND = Label.IE_Sort_Value_Trend;
+    private static String CNS_SORTVALUE_LATEST = Label.IE_Sort_Value_Latest;
+    private static String CNS_SORTVALUE_CLOSED = Label.IE_Sort_Value_Closed;
+    private static String CNS_SORTVALUE_NEWORDER = Label.IE_Sort_Value_New_Order;
+    private static String CNS_SORTVALUE_OLDESTFIRST = Label.IE_Sort_Value_Oldest_First;
+    private static String CNS_COMMUNITY_INTERNALVALUE = Label.IE_Community_internal_Value;
+    private static String GET_IDEAPOST_SQL = 'SELECT Id, Title__c, Body__c, Categories__c, Close__c, tolabel(Status__c), CreatedById, CreatedBy.Name, PointGrandTotal__c, CreatedBy.SmallPhotoUrl,PostFlag__c,CreatedDate, Anonymous__c FROM '+CNS_CLI_IDEAPOST;
     private static String getIdeaCommentCountSql = 'SELECT count() FROM IdeaComment__c where IdeaPost__c = :recordId';
 
     private static Void setClmName() {
         List<String> classNameParts = String.valueOf(IE_IdeaMainController.class).split('\\.', 2);
 
         if (classNameParts.size() > 1) {
-	        namespace_prefix  = classNameParts[0];
+	        NAMESPACE_PREFIX  = classNameParts[0];
         }
 
         //IdeaPost__c
-        cns_clm_ideapost = IdeaPost__c.getSObjectType().getDescribe().getName();
-        cns_clm_categories = IdeaPost__c.Categories__c.getDescribe().getName();
-        cns_clm_status = IdeaPost__c.Status__c.getDescribe().getName();
-        cns_clm_close = IdeaPost__c.Close__c.getDescribe().getName();
-        cns_clm_title = IdeaPost__c.Title__c.getDescribe().getName();
-        cns_clm_body = IdeaPost__c.Body__c.getDescribe().getName();
-        cns_clm_pointgrandtotal = IdeaPost__c.PointGrandTotal__c.getDescribe().getName();
-        cns_clm_postflag = IdeaPost__c.PostFlag__c.getDescribe().getName();
-        cns_clm_parentidea = IdeaPost__c.ParentIdea__c.getDescribe().getName();
-        cns_clm_community = IdeaPost__c.Community__c.getDescribe().getName();
-        getIdeaPostSql = 'SELECT Id,'+cns_clm_title+','+cns_clm_body+','+cns_clm_categories+','+cns_clm_pointgrandtotal+','+cns_clm_postflag+', '+cns_clm_close+', tolabel('+cns_clm_status+'), CreatedById, CreatedBy.Name, CreatedBy.SmallPhotoUrl,CreatedDate,Anonymous__c FROM '+cns_clm_ideapost;
+        CNS_CLI_IDEAPOST = IdeaPost__c.getSObjectType().getDescribe().getName();
+        CNS_CLM_CATEGORIES = IdeaPost__c.Categories__c.getDescribe().getName();
+        CNS_CLM_STATUS = IdeaPost__c.Status__c.getDescribe().getName();
+        CNS_CLM_CLOSE = IdeaPost__c.Close__c.getDescribe().getName();
+        CNS_CLM_TITLE = IdeaPost__c.Title__c.getDescribe().getName();
+        CNS_CLM_BODY = IdeaPost__c.Body__c.getDescribe().getName();
+        CNS_CLM_POINTGRANDTOTAL = IdeaPost__c.PointGrandTotal__c.getDescribe().getName();
+        CNS_CLM_POSTFLAG = IdeaPost__c.PostFlag__c.getDescribe().getName();
+        CNS_CLM_PARENTIDEA = IdeaPost__c.ParentIdea__c.getDescribe().getName();
+        CNS_CLM_COMMUNITY = IdeaPost__c.Community__c.getDescribe().getName();
+        GET_IDEAPOST_SQL = 'SELECT Id,'+CNS_CLM_TITLE+','+CNS_CLM_BODY+','+CNS_CLM_CATEGORIES+','+CNS_CLM_POINTGRANDTOTAL+','+CNS_CLM_POSTFLAG+', '+CNS_CLM_CLOSE+', tolabel('+CNS_CLM_STATUS+'), CreatedById, CreatedBy.Name, CreatedBy.SmallPhotoUrl,CreatedDate,Anonymous__c FROM '+CNS_CLI_IDEAPOST;
 
         //IdeaCommunitiesConfig__c
-        cns_clm_ideacommunitiesconfig = IdeaCommunitiesConfig__c.getSObjectType().getDescribe().getName();
-        cns_clm_like = IdeaCommunitiesConfig__c.Like__c.getDescribe().getName();
-        cns_clm_dislike = IdeaCommunitiesConfig__c.Dislike__c.getDescribe().getName();
-        cns_clm_shownegativevote = IdeaCommunitiesConfig__c.ShowNegativeVote__c.getDescribe().getName();
-        cns_clm_pagename = IdeaCommunitiesConfig__c.pageName__c.getDescribe().getName();
-        cns_clm_enableanonymouspost = IdeaCommunitiesConfig__c.enableAnonymousPost__c.getDescribe().getName();
-        cns_clm_configcommunity = IdeaCommunitiesConfig__c.Community__c.getDescribe().getName();
-        cns_clm_configcategories = IdeaCommunitiesConfig__c.Categories__c.getDescribe().getName();
-        cns_clm_configstattus = IdeaCommunitiesConfig__c.Status__c.getDescribe().getName();
+        CNS_CLM_IDEACOMMUNITIESCONFIG = IdeaCommunitiesConfig__c.getSObjectType().getDescribe().getName();
+        CNS_CLM_LIKE = IdeaCommunitiesConfig__c.Like__c.getDescribe().getName();
+        CNS_CLM_DISLIKE = IdeaCommunitiesConfig__c.Dislike__c.getDescribe().getName();
+        CNS_CLM_SHOWNEGATIVEVOTE = IdeaCommunitiesConfig__c.ShowNegativeVote__c.getDescribe().getName();
+        CNS_CLM_PAGENAME = IdeaCommunitiesConfig__c.pageName__c.getDescribe().getName();
+        CNS_CLM_ENABLEANONYMOUSPOST = IdeaCommunitiesConfig__c.enableAnonymousPost__c.getDescribe().getName();
+        CNS_CLM_COMFIGCOMMUNITY = IdeaCommunitiesConfig__c.Community__c.getDescribe().getName();
+        CNS_CLM_COMFIGCATEGORIES = IdeaCommunitiesConfig__c.Categories__c.getDescribe().getName();
+        CNS_CLM_COMFIGSTATUS = IdeaCommunitiesConfig__c.Status__c.getDescribe().getName();
 
         //Vote
-        cns_clm_vote = Vote__c.getSObjectType().getDescribe().getName();
-        cns_clm_votetype = Vote__c.VoteType__c.getDescribe().getName();
-        cns_clm_points = Vote__c.Points__c.getDescribe().getName();
-        cns_clm_voteideapost = Vote__c.IdeaPost__c.getDescribe().getName();
+        CNS_CLM_VOTE = Vote__c.getSObjectType().getDescribe().getName();
+        CNS_CLM_VOTETYPE = Vote__c.VoteType__c.getDescribe().getName();
+        CNS_CLM_POINTS = Vote__c.Points__c.getDescribe().getName();
+        CNS_CLM_VOTEIDEAPOST = Vote__c.IdeaPost__c.getDescribe().getName();
 
         //IdeaComment__c
-        cns_clm_ideacomment = IdeaComment__c.getSObjectType().getDescribe().getName();
-        cns_clm_ideacommentideapost = IdeaComment__c.IdeaPost__c.getDescribe().getName();
-        cns_clm_pickup = IdeaComment__c.Pickup__c.getDescribe().getName();
-        cns_clm_commentbody = IdeaComment__c.CommentBody__c.getDescribe().getName();
+        CNS_CLM_IDEACOMMENT = IdeaComment__c.getSObjectType().getDescribe().getName();
+        CNS_CLM_IDEACOMMENT_IDEAPOST = IdeaComment__c.IdeaPost__c.getDescribe().getName();
+        CNS_CLM_PICKUP = IdeaComment__c.Pickup__c.getDescribe().getName();
+        CNS_CLM_COMMENTBODY = IdeaComment__c.CommentBody__c.getDescribe().getName();
     }
 
     /**
@@ -116,19 +116,19 @@ public with sharing class IE_IdeaMainController {
             commInfo.communityName = communityName;
 
             // コミュニティ設定情報取得SOQL
-            String strCommConfQuery = ' SELECT '+cns_clm_configcategories+', '+cns_clm_configstattus+','+cns_clm_like+','+cns_clm_dislike+','+cns_clm_shownegativevote+','+cns_clm_pagename+','+cns_clm_enableanonymouspost + ' FROM '+cns_clm_ideacommunitiesconfig+' WHERE '+cns_clm_configcommunity+' = :communityName LIMIT 1 ';
+            String strCommConfQuery = ' SELECT '+CNS_CLM_COMFIGCATEGORIES+', '+CNS_CLM_COMFIGSTATUS+','+CNS_CLM_LIKE+','+CNS_CLM_DISLIKE+','+CNS_CLM_SHOWNEGATIVEVOTE+','+CNS_CLM_PAGENAME+','+CNS_CLM_ENABLEANONYMOUSPOST + ' FROM '+CNS_CLM_IDEACOMMUNITIESCONFIG+' WHERE '+CNS_CLM_COMFIGCOMMUNITY+' = :communityName LIMIT 1 ';
             List<IdeaCommunitiesConfig__c> IdeaConfList = Database.query(strCommConfQuery);
 
             if (IdeaConfList.size() > 0) {
                 IdeaCommunitiesConfig__c IdeaConf = IdeaConfList[0];
 
                 //初期値（All)を設定する
-                PickListVal elementInitialVal = getPickListVal(cns_conditionInitialVal, cns_conditionInitialVal);
+                PickListVal elementInitialVal = getPickListVal(CNS_CONDITiONINITIALVAL, CNS_CONDITiONINITIALVAL);
 
                 // カテゴリリスト設定
-                if (IdeaConf.Categories__c != null && IdeaConf.Categories__c != cns_strBlank) {
+                if (IdeaConf.Categories__c != null && IdeaConf.Categories__c != CNS_STR_BLANK) {
                     // コミュニティで使用するカテゴリ選択肢設定(モーダル)
-                    List<PickListVal> categoryListModal = getAblePickList(cns_clm_configcategories, IdeaConf.Categories__c);
+                    List<PickListVal> categoryListModal = getAblePickList(CNS_CLM_COMFIGCATEGORIES, IdeaConf.Categories__c);
                     commInfo.categoryListModal = categoryListModal;
 
                     // コミュニティで使用するカテゴリ選択肢設定(一覧画面)
@@ -138,15 +138,15 @@ public with sharing class IE_IdeaMainController {
                     //一覧画面の初期値(all)を挿入する
                     categoryList.add(0, elementInitialVal);
                     //一覧画面の初期値(私の投稿)を挿入する
-                    PickListVal elementMyIdea = getPickListVal(cns_conditionMyIdea, cns_conditionMyIdea);
+                    PickListVal elementMyIdea = getPickListVal(CNS_CONDITiONMYIDEA, CNS_CONDITiONMYIDEA);
                     categoryList.add(elementMyIdea);
 
                     commInfo.categoryList = categoryList;
                 }
                 // 状況リスト設定
-                if (IdeaConf.Status__c != null && IdeaConf.Status__c != cns_strBlank) {
+                if (IdeaConf.Status__c != null && IdeaConf.Status__c != CNS_STR_BLANK) {
                     // 状況で使用するカテゴリ選択肢設定
-                    List<PickListVal> statusList = getAblePickList(cns_clm_configstattus, IdeaConf.Status__c);
+                    List<PickListVal> statusList = getAblePickList(CNS_CLM_COMFIGSTATUS, IdeaConf.Status__c);
                     //一覧画面の初期値(all)を挿入する
                     statusList.add(0, elementInitialVal);
                     commInfo.statusList = statusList;
@@ -162,8 +162,8 @@ public with sharing class IE_IdeaMainController {
                 }
                 //Set List Page Name
                 if (IdeaConf.pageName__c != null) {
-                    if (namespace_prefix != NULL && !namespace_prefix.equalsIgnoreCase('')) {
-	                    commInfo.pageName = (String) namespace_prefix + '__' +IdeaConf.pageName__c;
+                    if (NAMESPACE_PREFIX != NULL && !NAMESPACE_PREFIX.equalsIgnoreCase('')) {
+	                    commInfo.pageName = (String) NAMESPACE_PREFIX + '__' +IdeaConf.pageName__c;
                     } else {
 	                    commInfo.pageName = (String) IdeaConf.pageName__c;
                     }
@@ -186,9 +186,9 @@ public with sharing class IE_IdeaMainController {
     public static IdeaCellInfo getIdeaDetail(String recordId) {
         try {
             setClmName();
-            String getIdeaPostSqlWhereLimit = getIdeaPostSql + ' WHERE Id = :recordId LIMIT 1';
+            String GET_IDEAPOST_SQLWhereLimit = GET_IDEAPOST_SQL + ' WHERE Id = :recordId LIMIT 1';
 
-            IdeaPost__c ideaRow = Database.query(getIdeaPostSqlWhereLimit);
+            IdeaPost__c ideaRow = Database.query(GET_IDEAPOST_SQLWhereLimit);
 
             String UserId = UserInfo.getUserId();
 
@@ -196,7 +196,7 @@ public with sharing class IE_IdeaMainController {
             User userInfo = Database.query('SELECT SmallPhotoUrl,Name FROM User WHERE User.ID = :UserId LIMIT 1');
             String LoginUserSmallPhotoUrl = userInfo.SmallPhotoUrl;
             String LoginUserName = userInfo.Name;
-            List<Vote__c> voteList = Database.query('SELECT Id, '+cns_clm_votetype+','+cns_clm_points+' FROM '+cns_clm_vote+' WHERE createdById = :UserId and '+cns_clm_voteideapost+' = :recordId');
+            List<Vote__c> voteList = Database.query('SELECT Id, '+CNS_CLM_VOTETYPE+','+CNS_CLM_POINTS+' FROM '+CNS_CLM_VOTE+' WHERE createdById = :UserId and '+CNS_CLM_VOTEIDEAPOST+' = :recordId');
             IdeaCellInfo iri = new IdeaCellInfo();
             iri.isVoted = false;
 
@@ -206,7 +206,7 @@ public with sharing class IE_IdeaMainController {
                 //投票結果をチェックする
                 iri.isPositive = false;
 
-                if (voteList[0].VoteType__c.equals(cns_voteType_positive)) {
+                if (voteList[0].VoteType__c.equals(CNS_VOTETYPE_POSITIVE)) {
                     iri.isPositive = true;
                 }
             }
@@ -216,7 +216,7 @@ public with sharing class IE_IdeaMainController {
             iri.title = ideaRow.Title__c;
             iri.ideaBody = ideaRow.Body__c;
             iri.categories = ideaRow.Categories__c;
-            iri.categoriesLabel = getPickListLabelName(cns_clm_categories, ideaRow.Categories__c); //画面表用のカテゴリラベル名設定
+            iri.categoriesLabel = getPickListLabelName(CNS_CLM_CATEGORIES, ideaRow.Categories__c); //画面表用のカテゴリラベル名設定
             iri.isPost = ideaRow.PostFlag__c;
             iri.isClosed = ideaRow.Close__c;
             iri.userName = LoginUserName;
@@ -283,7 +283,7 @@ public with sharing class IE_IdeaMainController {
             setClmName();
             Vote__c vote = new Vote__c();
             String UserId = UserInfo.getUserId();
-            List<Vote__c> votes = Database.query('SELECT Id, '+cns_clm_votetype+','+cns_clm_points+' FROM '+cns_clm_vote+' WHERE createdById = :UserId and '+cns_clm_voteideapost+' = :recordId');
+            List<Vote__c> votes = Database.query('SELECT Id, '+CNS_CLM_VOTETYPE+','+CNS_CLM_POINTS+' FROM '+CNS_CLM_VOTE+' WHERE createdById = :UserId and '+CNS_CLM_VOTEIDEAPOST+' = :recordId');
 
             if (votes.size() > 0) {
                 vote = votes[0];
@@ -294,7 +294,7 @@ public with sharing class IE_IdeaMainController {
             if (isLike.equals('delete') && Schema.sObjectType.Vote__c.isDeletable()) {
                 delete vote;
             } else {
-                vote.VoteType__c = isLike.equals('true') ? cns_voteType_positive : cns_voteType_negative;
+                vote.VoteType__c = isLike.equals('true') ? CNS_VOTETYPE_POSITIVE : CNS_VOTETYPE_NEGATIVE;
                 vote.Points__c = point;
 
                 if (Schema.sObjectType.Vote__c.isCreateable() && Schema.sObjectType.Vote__c.isUpdateable()) {
@@ -326,9 +326,9 @@ public with sharing class IE_IdeaMainController {
                 categoryModalString += tmpString;
             }
 
-            String getIdeaPostSqlwhere = getIdeaPostSql + ' WHERE id = :recordId';
+            String GET_IDEAPOST_SQLwhere = GET_IDEAPOST_SQL + ' WHERE id = :recordId';
 
-            List<IdeaPost__c> IdeaPostList = Database.query(getIdeaPostSqlwhere);
+            List<IdeaPost__c> IdeaPostList = Database.query(GET_IDEAPOST_SQLwhere);
 
             //アイデア取得件数が0件の場合、エラー
             if (!String.isEmpty(recordId) && IdeaPostList.size() == 0) {
@@ -396,10 +396,10 @@ public with sharing class IE_IdeaMainController {
             Integer commentCount = Database.countQuery(getIdeaCommentCountSql);
             ideaCommentListInfo.grandCommentCount = commentCount;
 
-            String selectQuery = 'SELECT createdBy.Name, createdBy.SmallPhotoUrl,'+cns_clm_commentbody+',CreatedDate, Anonymous__c, '+cns_clm_pickup+' FROM '+ cns_clm_ideacomment + ' WHERE '+cns_clm_ideacommentideapost+' = :recordId ORDER BY CreatedDate';
+            String selectQuery = 'SELECT createdBy.Name, createdBy.SmallPhotoUrl,'+CNS_CLM_COMMENTBODY+',CreatedDate, Anonymous__c, '+CNS_CLM_PICKUP+' FROM '+ CNS_CLM_IDEACOMMENT + ' WHERE '+CNS_CLM_IDEACOMMENT_IDEAPOST+' = :recordId ORDER BY CreatedDate';
             String selectQuerySort = ' ASC';
 
-            if (selectedSort.equals(cns_sortValueNewOrder)) {
+            if (selectedSort.equals(CNS_SORTVALUE_NEWORDER)) {
                 selectQuerySort = ' DESC';
             }
 
@@ -449,10 +449,10 @@ public with sharing class IE_IdeaMainController {
 
             //私の投稿の場合、マージされたアイデアも表示する
             // 条件クエリ作成
-            String strConditionQuery = ' WHERE '+cns_clm_community+' = :communityName';
+            String strConditionQuery = ' WHERE '+CNS_CLM_COMMUNITY+' = :communityName';
             //私の投稿の場合にはマージされたアイデアも含めて表示をする
-            if (!category.equals(cns_conditionMyIdea)) {
-                strConditionQuery = strConditionQuery + ' AND '+cns_clm_parentidea+' = null';
+            if (!category.equals(CNS_CONDITiONMYIDEA)) {
+                strConditionQuery = strConditionQuery + ' AND '+CNS_CLM_PARENTIDEA+' = null';
             }
 
             //私の投稿を検索するため、ログインユーザのidを取得
@@ -460,31 +460,31 @@ public with sharing class IE_IdeaMainController {
             String strConCategoryQuery = '';
 
             if (category != null && !String.isBlank(category)) {
-                if (category.equals(cns_conditionInitialVal)) {
+                if (category.equals(CNS_CONDITiONINITIALVAL)) {
                     // カテゴリ値 = ALL
-                    strConCategoryQuery = ' AND '+cns_clm_postflag+' = true';
-                } else if (category.equals(cns_conditionMyIdea)) {
+                    strConCategoryQuery = ' AND '+CNS_CLM_POSTFLAG+' = true';
+                } else if (category.equals(CNS_CONDITiONMYIDEA)) {
                     // カテゴリ値 = 私の投稿　※未公開アイデアも取得
                     strConCategoryQuery = ' AND CreatedById = : UserId ';
                 } else {
                     // カテゴリ値 = 上記以外の選択値　
-                    strConCategoryQuery = ' AND '+cns_clm_categories+' INCLUDES (: category) AND '+cns_clm_postflag+' = true ';
+                    strConCategoryQuery = ' AND '+CNS_CLM_CATEGORIES+' INCLUDES (: category) AND '+CNS_CLM_POSTFLAG+' = true ';
                 }
             }
 
             String strStatusQuery = '';
 
-            if (status != null && !String.isBlank(status) && status != cns_conditionInitialVal) {
-                strStatusQuery = ' AND '+cns_clm_status+' = : status ';
+            if (status != null && !String.isBlank(status) && status != CNS_CONDITiONINITIALVAL) {
+                strStatusQuery = ' AND '+CNS_CLM_STATUS+' = : status ';
             }
 
             String strOrderbyQuery;
             //ソート(トレンド、最新)、offsetの設定を行う
             if (sortVal != null && !String.isBlank(sortVal)) {
-                if (sortVal.equals(cns_sortValueTrend)) {
-                    strOrderbyQuery = ' ORDER BY '+cns_clm_pointgrandtotal+' DESC, CreatedDate DESC NULLS LAST ';
-                } else if (sortVal.equals(cns_sortValueClosed)) {
-                    strOrderbyQuery = ' ORDER BY '+cns_clm_close+' DESC, CreatedDate DESC NULLS LAST ';
+                if (sortVal.equals(CNS_SORTVALUE_TREND)) {
+                    strOrderbyQuery = ' ORDER BY '+CNS_CLM_POINTGRANDTOTAL+' DESC, CreatedDate DESC NULLS LAST ';
+                } else if (sortVal.equals(CNS_SORTVALUE_CLOSED)) {
+                    strOrderbyQuery = ' ORDER BY '+CNS_CLM_CLOSE+' DESC, CreatedDate DESC NULLS LAST ';
                 } else {
                     strOrderbyQuery = ' ORDER BY CreatedDate DESC NULLS LAST ';
                 }
@@ -494,8 +494,8 @@ public with sharing class IE_IdeaMainController {
             // ---　アイデア投稿オブジェクト取得クエリ生成　END ---　
 
             // クエリ実行
-            List<IdeaPost__c> ideaList = Database.query(getIdeaPostSql + strConditionQuery + strConCategoryQuery + strStatusQuery + strOrderbyQuery + strSortLimitOffsetQuery);
-            List<IdeaPost__c> ideaListCnt = Database.query(getIdeaPostSql + strConditionQuery + strConCategoryQuery + strStatusQuery);
+            List<IdeaPost__c> ideaList = Database.query(GET_IDEAPOST_SQL + strConditionQuery + strConCategoryQuery + strStatusQuery + strOrderbyQuery + strSortLimitOffsetQuery);
+            List<IdeaPost__c> ideaListCnt = Database.query(GET_IDEAPOST_SQL + strConditionQuery + strConCategoryQuery + strStatusQuery);
 
             //アイデアリスト、showIdeaLimit, offsetを返すリストを作成する
             IdeaListInfo ideaListInfo = new IdeaListInfo();
@@ -589,7 +589,7 @@ public with sharing class IE_IdeaMainController {
         public Boolean enableAnonymousPost { get; set; }
         CommunityInfo() {
             // 初期値設定
-            communityName = cns_strBlank;
+            communityName = CNS_STR_BLANK;
         }
     }
 
@@ -728,10 +728,10 @@ public with sharing class IE_IdeaMainController {
         // コミュニティ情報取得
         Id commId = System.Network.getNetworkId();
         // コミュニティ名初期値：内部
-        String retVal = cns_communityInternalValue;
+        String retVal = CNS_COMMUNITY_INTERNALVALUE;
         if (commId != null) {
             List<NetWork> nmList = Database.query('SELECT Name FROM NetWork WHERE Id = :commId');
-            if (nmList.size() > 0 && nmList[0].Name != cns_strBlank) {
+            if (nmList.size() > 0 && nmList[0].Name != CNS_STR_BLANK) {
                 retVal = nmList[0].Name;
             }
         }
@@ -744,14 +744,14 @@ public with sharing class IE_IdeaMainController {
     private static Map<Id, Boolean> getVoteTypeMapByIdea() {
         // 実行者が投票したアイデア取得
         String UserId = UserInfo.getUserId();
-        List<Vote__c> voteList = Database.query('SELECT Id,'+cns_clm_voteideapost+',createdById,'+cns_clm_votetype+','+cns_clm_points+' FROM '+cns_clm_vote+' WHERE createdById = :UserId');
+        List<Vote__c> voteList = Database.query('SELECT Id,'+CNS_CLM_VOTEIDEAPOST+',createdById,'+CNS_CLM_VOTETYPE+','+CNS_CLM_POINTS+' FROM '+CNS_CLM_VOTE+' WHERE createdById = :UserId');
 
         // マップ作成(アイデア毎の投票区分マップ)
         Map<Id, Boolean> retMap = new Map<Id, Boolean>();
         for (Vote__c vRow : voteList) {
             Boolean blnVoteType = false;
             // Likeの場合
-            if (vRow.VoteType__c != cns_strBlank && vRow.VoteType__c == cns_voteType_positive) {
+            if (vRow.VoteType__c != CNS_STR_BLANK && vRow.VoteType__c == CNS_VOTETYPE_POSITIVE) {
                 blnVoteType = true;
             }
             // アイデアId - 投票区分
@@ -765,7 +765,7 @@ public with sharing class IE_IdeaMainController {
     */
     private static List<PickListVal> getAblePickList(String fieldsName, String ablePickList) {
         // 項目で使用予定の選択肢リスト
-        List<String> ableList = ablePickList.split(cns_strSemicolon);
+        List<String> ableList = ablePickList.split(CNS_STR_SEMICOLON);
 
         // すべての項目の中で、使用されている項目のみ取得する
         List<selectOption> pickListValList = getPickListValList(fieldsName, ableList);
@@ -794,7 +794,7 @@ public with sharing class IE_IdeaMainController {
     */
     private static List<selectOption> getPickListValList(String fieldsName, List<String> ableList) {
         //すべての選択リストを取得する
-        Schema.DescribeFieldResult fieldResult = Schema.getGlobalDescribe().get(cns_clm_ideapost).getDescribe().fields.getMap().get(fieldsName).getDescribe();
+        Schema.DescribeFieldResult fieldResult = Schema.getGlobalDescribe().get(CNS_CLI_IDEAPOST).getDescribe().fields.getMap().get(fieldsName).getDescribe();
         List<Schema.PicklistEntry> pickListVal = fieldResult.getPicklistValues();
 
         //取得したすべての選択リストの中で、使用している選択リストのみ取得
@@ -823,8 +823,8 @@ public with sharing class IE_IdeaMainController {
         public String value { get; set; }
         PickListVal() {
             // 初期値設定
-            label = cns_strBlank;
-            value = cns_strBlank;
+            label = CNS_STR_BLANK;
+            value = CNS_STR_BLANK;
         }
     }
 
